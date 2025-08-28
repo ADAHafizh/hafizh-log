@@ -6,16 +6,18 @@ import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getRecentPosts } from '@/lib/data-utils'
+import { Button } from "@/components/ui/button"
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
+<!-- Heading Section -->
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
   <section>
     <div class="rounded-lg border">
       <div class="flex flex-col space-y-1.5 p-6">
-        <h3 class="text-3xl leading-none font-medium">log</h3>
+        <h3 class="text-3xl leading-none font-medium">l•o•g</h3>
         <p class="text-muted-foreground text-sm">
           /lɒɡ/ &bull; <span class="font-medium">noun</span>
         </p>
@@ -25,8 +27,20 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
           a full written record of a journey, a period of time, or an event.
         </p>
       </div>
+      <div class="flex flex-wrap items-center gap-2 md:flex-row">
+        <Button> Capstone Seminar </Button>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 md:flex-row">
+        <Button> Future Punk </Button>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 md:flex-row">
+        <Button> Understanding IM </Button>
+      </div>
     </div>
   </section>
+
+
+  <!-- Latest Post -->
   <section class="flex flex-col gap-y-4">
     <h2 class="text-2xl font-medium">Latest posts</h2>
     <ul class="flex flex-col gap-y-4">

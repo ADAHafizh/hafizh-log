@@ -5,6 +5,7 @@ export const SITE: Site = {
   description:
     'A blog website to document necessities',
   href: 'https://hafizh-log.vercel.app/',
+  author: 'hafizh',
   locale: 'en-US',
   featuredPostCount: 2,
   postsPerPage: 3,

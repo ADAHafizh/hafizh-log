@@ -28,19 +28,23 @@ export const NAV_LINKS: SocialLink[] = [
     href: '/tags',
     label: 'tags',
   },
+  {
+    href: '/about-capstone',
+    label: 'about capstone',
+  },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: 'https://github.com/jktrn',
+    href: 'https://github.com/adahafizh',
     label: 'GitHub',
   },
   {
-    href: 'https://twitter.com/enscry',
-    label: 'Twitter',
+    href: 'https://www.youtube.com/@sisipah',
+    label: 'Youtube',
   },
   {
-    href: 'mailto:jason@enscribe.dev',
+    href: 'mailto:adh10023@nyu.edu',
     label: 'Email',
   },
   {
@@ -56,4 +60,5 @@ export const ICON_MAP: IconMap = {
   Twitter: 'lucide:twitter',
   Email: 'lucide:mail',
   RSS: 'lucide:rss',
+  Youtube: 'lucide:youtube',
 }

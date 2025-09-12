@@ -20,7 +20,7 @@ As we have been studying for a whole semester with AI tools, I wish to gain an i
 
 # Methodology
 
-## Snapshotting Ghibli 
+### Snapshotting Ghibli 
 The first question that I ask when doing this project is simple:
 
 > **"How do I obtain the Ghibli Movie Frames?"**
@@ -46,7 +46,7 @@ While technically I could obtain it through 'interesting' ways, I figured it wou
 
 The methodologies how Loonnn obtained these frames are unclear. However, thanks to them, we are able to use it for the sake of study. In total, there are 310 frames of Ghibli movies which provides me a corpus large enough for this study. 
 
-## Do AI(s) Dream of Animated Sheep? 
+### Do AI(s) Dream of Animated Sheep? 
 The first tool that I am using is **Distant Viewing Explorer**. It is a free, open-source web tool that allows users to apply advanced AI models to visual and multimodal datasets without needing extensive programming skills. The tool simplifies access to computer vision technologies and supports working with both small and large datasets.
 
 Within DVE, there are sub-sections of several models that grouped by the type of data that they work with. For this experiment, I am using **Object Detection, Image Segmentation, and Multimodal Zero-Shot Model.** The first two categories fall under Image section, where it uses Microsoft COCO (Common Objects in Context), a large-scale dataset designed to advance object recognition and scene understanding. The zero-shot model uses Sigmoid Loss for Language-Image Pre-training (SigLIP), which essentially combines image-text abilities to understand images (pre-trained) and texts (to read and interpret). 
@@ -55,7 +55,7 @@ The second tool that I am using is **Orange Data Mining** an open-source data vi
 
 # Outcomes
 
-## DVE | Object Detection
+### DVE | Object Detection
 
 The following are results taken from Lupin III: The Castle of Cagliostro. I did the test 2-3 times to see if there could be any changes in the result, but apparently the model seems to be consistent in its answers.
 
@@ -69,7 +69,7 @@ The following are results taken from Lupin III: The Castle of Cagliostro. I did 
 | ![tie.png](./assignment3/DVE_Object/tie.png)     | It is able to recognize an object as small as a tie, but not the large person wearing it |
 
 
-## DVE | Image Segmentation
+### DVE | Image Segmentation
 
 For image segmentation, I used frames from My Neighbor Totoro. The reason I use this film was because there is a clear distinction in most of the scenes (i.e sky, ground, trees, house, etc.) If the model pass this test, then I assume we could use other images that are more difficult. 
 
@@ -80,7 +80,7 @@ For image segmentation, I used frames from My Neighbor Totoro. The reason I use 
 
 Since the model was able to distinct section of a scenery, I also tried several scenes from Spirited Away which were slightly more abstract than My Neighbor Totoro scenes. Sadly, the computer was not able to distinguish between buildings and people mixed in together. 
 
-## DVE | Zero-Shot Model 
+### DVE | Zero-Shot Model 
 
 For this multimodal, I am unsure which material to use. For simplicity's sake, I use the frames from Kiki's Delivery Service, which I believe contains scenes that reflect our cities, nature, and people quite well. The results are unsurprising that the model was able to recognize most of the 'context' within the images well.
 
@@ -89,7 +89,7 @@ For this multimodal, I am unsure which material to use. For simplicity's sake, I
 | ![city.png](./assignment3/DVE_Multimodal/city.png)                                                   | ![house.png](./assignment3/DVE_Multimodal/house.png)             | ![city.png](./assignment3/DVE_Multimodal/person.png) |
 | The first 10 or so pictures go it right, there are features of a city such as tall buildings, streets, cars, etc. | I am surprised it chose the interior of a house rather than the external form | It got the pictures right, nice job!                              |
 
-## Orange Data Mining
+### Orange Data Mining
 
 With Orange, I split my process into two parts. The first part consisted of using an unsorted, uncategorized corpus, meaning all 300+ images are inside a single folder. The latter being a categorized corpus based off five categories:
 
@@ -99,17 +99,17 @@ With Orange, I split my process into two parts. The first part consisted of usin
  4. **Nature** → Images with trees, mountains, and overall 'greens' in them
  5. **Scenery** → Images that may contain nature, buildings, cities, but overall not nature. These categories will help me determine the Confusion Matrix later on. 
 
-.
+
 
 **Part One: Uncategorized Corpus** 
-.
+
 
 | Image                                                                         | Description                                                                                                                                                                                                        |
 | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | ![uncategorized.png](./assignment3/Orange/Uncategorized.png)     | Based on the output, what I can conclude is that the left-axis recognizes nature images, whereas the right-axis typically recognizes humans, although there are scenery, machines, and creatures mixed in between. |
 | ![monster_cluster.png](./assignment3/Orange/monster_cluster.png) | I did a selection from the cluster to see on a detailed view. From what I learn, it seems to recognize similar looking pictures of creatures / monsters despite being from different movies.                       |
 
-.
+
 
 **Part Two: Categorized Corpus** 
 In this part, I wanted to experiment by trying to uncover 'how' the model thinks when classifying the images. What I found interesting is that the model agrees with three categories: *Nature, Scenery, and Machines.* On the other hand, it seems to fail on figuring out the difference between a person and a creature. 
@@ -125,7 +125,7 @@ In this part, I wanted to experiment by trying to uncover 'how' the model thinks
 | ![nature.png](./assignment3/Orange/matrix_nature.png)       | All greens, nice!                                                                                                                                                              |
 | ![scenery.png](./assignment3/Orange/matrix_scenery.png)     | Yes. I agree these are sceneries as well                                                                                                                                       |
 
-.
+
 # Discussions, Findings, and Conclusion
 
 While working on this project, I noticed several things on the way AI models recognize anime pictures. I want to highlight shapes (two-dimensional representation, built using lines, textures, or colours) and forms (likely three-dimensional as it has depth, elements of art, principles of design, and media). Why is this important? Because from some of the examples above, it can be summarized that the model recognizes shapes more than forms. 

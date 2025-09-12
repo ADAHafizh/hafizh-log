@@ -8,8 +8,11 @@ authors: ['adahafizh']
 ---
 
 Written by Ahmad Hafizh and Lucas Lin
+
 # Background
+
 ## Source Material
+
 For this assignment, we are using the Zanzibar Gazette Year 1909. The year was chosen considering metadata quality (the ability to search texts inside) and visibility (how good the visuals are). Our next consideration is the tidiness of the data. The year 1909 onwards provide better layout and clarity on the information stored compared to previous years. We also would like to avoid the years between 1914 - 1918 as it was the period of World War I, and we expect lower amounts of data in the Gazette during these years.
 
 In this collection, we scrambled through the tables within. As far as we observed, there are tables regarding mail, meteorological reports, custom and principal item reports, ship sailings, and shipping reports. Among these, the Shipping Reports caught our attention for two main reasons: 
@@ -32,7 +35,7 @@ After working on our assignment with both Google’s Gemini and DeepSeek, here a
 1.  **Gemini**
 - The tool lacked .csv file reading capabilities. Since our work relied heavily on this file type, we felt that we were limited by the tool.
 -  For OCR, Gemini does not correct itself and instead chooses to give whatever it recognizes. In other words, if the outcome produced by Gemini contained a mistake, it would likely persist.
-1. **DeepSeek**
+2. **DeepSeek**
 - In comparison, DeepSeek can clean up data. As an example, DeepSeek understands dittos in the table and assumes that it should follow the preceding table value. There are also several cleanups that the tool performed which we will showcase later.
 - Additionally, DeepSeek can read .csv files , which allowed it to reference our existing data structure. This feature proved especially useful, as new OCR outputs could be seamlessly merged with our dataset.
 
@@ -40,7 +43,9 @@ After working on our assignment with both Google’s Gemini and DeepSeek, here a
 >
 
 # Modeling
+
 ## Processing the Report
+
 The following is a detailed explanation of our processes. We extracted shipping information from the Zanzibar Gazette 1909 by first screenshotting each page. Then, we fed this image to Google Gemini. Next are the prompts (bold texts) with their respective results that Gemini gave us. Then, we exported this .csv data into Google Sheets and created a table by splitting columns. From there, we decided to alter some of the header and data that we deem important to ‘clean’ further manually. 
 
 > **Hello! Can you please generate me a table and .csv based on the image shown?**
@@ -69,7 +74,9 @@ There are several changes that we made before visualizing our data:
 - The inconsistent formatting of ship prefixes (S.S. for steamship, C.S. for cable ship) required extensive manual correction, as they frequently appeared in wrong columns, were omitted entirely, or contained irregular spacing/punctuation (e.g., "S .S.", "S.S ."). We systematically audited each entry, cross-referenced historical registers to verify proper prefixes, and standardized all variations to "S.S." or "C.S." format.
 
 # Data Correction
+
 ## A Major Overlook
+
 Three-quarters into the process, a significant oversight came to light when we attempted to visualize our data. We had been taking 'snippets' of the shipping reports by cropping only half of the page. However, upon a closer comparison—specifically juxtaposing the 16th March 1909 report with others, we realized that every Zanzibar Gazette shipping report from 1909 spans an entire page. 
 
 This discovery revealed that the reports were not limited to cargo ships but also included warships (categorized as Man-O-War) and smaller, traditional vessels (classified as Dhows). Consequently, what was once a visualization focused solely on cargo ships was expanded to encompass a broader range of maritime activity. 
@@ -91,6 +98,7 @@ At this point, we learned that Gemini did not support .csv files. Luckily, DeepS
 
 
 # Visualization
+
 ## Mapping Zanzibar Shipping Report 1909
 We created an interactive map by importing our standardized dataset into Kepler, structuring it with three primary visualization layers: 
 1. **Origin Points:** Translucent circles mark each departure location—blue for cargo ships and red for warships—plotted using their departure coordinates. 
@@ -100,29 +108,31 @@ For clarity, origin labels are styled in blue, and destination tags in yellow. W
 
 <div align="center">
     <figure>
-    <img src="assignment2/Map.gif" alt="Route Map" width="640" height="360"/>
+    <img src="assignment2/Map.gif" alt="Route Map"/>
     <figcaption>Interactive Map of Zanzibar Shipping Report 1909</figcaption>
     </figure>
 </div>
 
 ## Fantastic Dhows and Where to Find Them
+
 Initially, we tried using Google Sheets to represent our analysis on Dhows. However, we encountered numerous problems regarding Timeline Graphs, and the outcome did not display the data like we expected. Instead, we used an online tool called [CSV Plots](https://www.csvplot.com/) to map our data in a line graph. 
 
 <div align="center">
     <figure>
-    <img src="assignment2/Graph_Line_Dhows_Sail.png" alt="Route Map"/>
+    <img src="https://i.imgur.com/13iWyrD.png" alt="Route Map"/>
     <figcaption>Dhows Sailed</figcaption>
     </figure>
 </div>
 
 <div align="center">
     <figure>
-    <img src="assignment2/Graph_Line_Dhows_Arrive.png" alt="Route Map"/>
+    <img src="https://i.imgur.com/AXtetQ1.png" alt="Route Map"/>
     <figcaption>Dhows Arrived</figcaption>
     </figure>
 </div>
 
 # Findings & Conclusion
+
 This assignment has allowed us to learn more about AI, specifically its capabilities of doing humanities tasks. On first glance, we did not identify any major conclusions from our data. Rather than not having enough information, it lies at the point that nothing particularly ‘interesting’ surfaced from the shipping records.However, through closer inspection and contextual analysis, we were able to identify meaningful patterns—though these observations remain provisional and would require further research beyond our dataset to confirm. Zanzibar, in 1909, stood as a vital maritime trade hub in East Africa. Although under British colonial rule at the time, it maintained strong commercial ties with Arabian traders, particularly those from Oman. The high number of Zanzibar/British dhows indicates local dominance in maritime activity. We also took into account external influences that might affect the data, such as:
 - **Seasonal Trade Routes:** Maritime trade was heavily influenced by monsoon patterns, particularly between March and May. Dhows from Arabia and India likely followed these seasonal wind cycles—evident in the noticeable drop in arriving dhows during these months.
 - **Colonial Policies:** The dominance of British and Zanzibari dhows may have been shaped by colonial policies that favored local or colonial-affiliated traders, potentially limiting foreign competition.
@@ -132,12 +142,15 @@ This assignment has allowed us to learn more about AI, specifically its capabili
 Ultimately, while our project began as a technical exercise in digitization and data visualization, it gradually revealed layers of historical insight—underscoring how even seemingly mundane records can illuminate broader narratives when combined with careful analysis and contextual understanding.
 
 ## Sheet Download Links 
+
 - [Dhows.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Dhows.csv)
 - [Shipping Report.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Shipping_Report.csv)
 
 # Contributions
+
 *On this assignment, Ahmad prompted the AI chatbots, created the .csv file on Google Sheets, and Dhows graph. Lucas visualized the main table (Shipping Report) into Kepler. We both refined the shipping report table and wrote the markdown post together.*
 
 # Resources
+
 - Klein, Lauren, et al. "Provocations from the humanities for generative ai research." arXiv preprint arXiv:2502.19190 (2025).
 - The Editors of Encyclopaedia Britannica. "German East Africa". Encyclopedia Britannica, 15 Oct. 2024, https://www.britannica.com/place/German-East-Africa. 

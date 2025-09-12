@@ -58,11 +58,9 @@ There are several changes that we made before visualizing our data:
 3.  **Geographic Data Verification Process**
  - The geocoding phase revealed several categories of location-related challenges that demanded tailored solutions. For completely unrecognizable place names like "German Coast," we conducted archival research to determine appropriate modern equivalents (in this case, "Germany"). Vague directional terms such as "South" were interpreted through careful analysis of shipping routes and contextual clues, typically defaulting to "South Africa" when no clearer alternative emerged. We addressed variable spellings (e.g., "Daressalaam"/"Dar es Salaam") by creating and applying a standardized names reference list. Particularly challenging were obsolete terms like "Tania" and "Gaulle ato Dobouti," which required consultation of historical shipping records and colonial-era documents before we could confidently map them to contemporary equivalents.
     
-
 4.  **Text Recognition and Formatting Corrections**
 - The suboptimal quality of source images necessitated an extensive manual review process for the OCR-generated data. Our team performed side-by-side comparisons of extracted data with original newspaper scans, developing a comprehensive list of common error patterns (e.g., "1900" vs "1909", "Wami" vs "Wani") to guide systematic corrections. We established rigorous formatting standards for ship prefixes (S.S., C.S.), ensuring consistent spacing, punctuation, and proper column assignment through verification against known shipping registries. Company naming conventions were normalized through the implementation of strict formatting rules governing initial spacing (D.O.A.L. vs D. O. A. L.), capitalization standards (Co. vs co.), and punctuation guidelines for ampersands and abbreviations. Every data point underwent double verification to ensure accuracy, particularly for numerical values where OCR frequently misidentified similar-looking digits in low-quality scans.
     
-
 5.  **Temporal Data Preparation**
 - Preparing the date data for Kepler visualization demanded careful precision. We developed a strict standardization process that first reconstructed incomplete dates by analyzing contextual clues from adjacent entries and the newspaper's publication rhythm. Each timestamp was then reformatted to include both date and time components, with empty time values automatically set to 00:00:00. This involved manually processing the entire date column to enforce uniform formatting - every entry was verified to follow the exact "1909-MM-DD 00:00:00" structure, ensuring compatibility with Kepler's visualization requirements. Special attention was given to correcting OCR errors in dates while maintaining historical accuracy throughout the dataset.
     
@@ -88,8 +86,8 @@ At this point, we learned that Gemini did not support .csv files. Luckily, DeepS
 | Prompt                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Output                                                                                                                                             |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Uploaded 1909_ShippingReport.csv (our base file) Okay. I have attached a file here. Please examine the file and take note of the headers and the contents stored within.                                                                                                                                                                                                                                                                                                                                                         | DeepSeek examines the file.  Let me know if you’d like to explore specific aspects (e.g., filtering by nationality, time ranges, or missing data)! |
-| Uploaded a screenshot of the Zanzibar Gazette Shipping Reports 1 June 1909 Now, examine the 1909_ShippingReport.csv file I have provided. If you still remember and examined correctly, you should notice that the tabular data image I have provided you contains data structured similarly to the .csv file I provided. Can you merge the .csv file I just provided with the ones you created? Ignore the longitude (from), latitude (from), longitude (destination), and latitude (destination) columns and leave them empty. | ![Prompt 2.png](/assets/images/assignment2/prompt_2.png)                                                                                           |
-| Remember the steps that you have done previously. Here is a new image similar to the ones I gave before. Extract the textual information and adjust the data so that it fits the 1909_ShippingReport.csv structure while ignoring longitude (from), latitude (from), longitude (destination), and latitude (destination) columns and leave them empty.                                                                                                                                                                           | ![Prompt 3.png](/assets/images/assignment2/prompt_3.png)                                                                                           |
+| Uploaded a screenshot of the Zanzibar Gazette Shipping Reports 1 June 1909 Now, examine the 1909_ShippingReport.csv file I have provided. If you still remember and examined correctly, you should notice that the tabular data image I have provided you contains data structured similarly to the .csv file I provided. Can you merge the .csv file I just provided with the ones you created? Ignore the longitude (from), latitude (from), longitude (destination), and latitude (destination) columns and leave them empty. | ![Prompt 2.png](./assignment2/prompt_2.png)                                                                                           |
+| Remember the steps that you have done previously. Here is a new image similar to the ones I gave before. Extract the textual information and adjust the data so that it fits the 1909_ShippingReport.csv structure while ignoring longitude (from), latitude (from), longitude (destination), and latitude (destination) columns and leave them empty.                                                                                                                                                                           | ![Prompt 3.png](./assignment2/prompt_3.png)                                                                                           |
 
 
 # Visualization
@@ -100,19 +98,29 @@ We created an interactive map by importing our standardized dataset into Kepler,
 
 For clarity, origin labels are styled in blue, and destination tags in yellow. We added a temporal dimension using an animated timeline (set to 2x playback speed), which renders routes sequentially based on rigorously formatted arrival dates (DD-MM-YYYY 00:00:00). This multi-layered visualization communicates three key narratives: (a) geographic movement patterns via the point-to-point connection system, (b) national fleet distributions through chromatic encoding, and (c) historical sequencing via the time-based animation.
 
-
-| ![Kepler Map](./assignment2/Map.gif)  |
-|---|
+<div align="center">
+    <figure>
+    <img src="./assignment2/Map.gif" alt="Route Map" width="640" height="360"/>
+    <figcaption>Interactive Map of Zanzibar Shipping Report 1909</figcaption>
+    </figure>
+</div>
 
 ## Fantastic Dhows and Where to Find Them
 Initially, we tried using Google Sheets to represent our analysis on Dhows. However, we encountered numerous problems regarding Timeline Graphs, and the outcome did not display the data like we expected. Instead, we used an online tool called [CSV Plots](https://www.csvplot.com/) to map our data in a line graph. 
 
-| Dhows Sailed  |
-|---|
-| ![Dhows Sailed](./assignment2/Graph_Line_Dhows_Sail.png) |
-| Dhows Arrived  |
-| ![Dhows Arrived](./assignment2/Graph_Line_Dhows_Arrive.png)  |
+<div align="center">
+    <figure>
+    <img src="./assignment2/Graph_Line_Dhows_Sail.png" alt="Route Map"/>
+    <figcaption>Dhows Sailed</figcaption>
+    </figure>
+</div>
 
+<div align="center">
+    <figure>
+    <img src="./assignment2/Graph_Line_Dhows_Arrive.png" alt="Route Map"/>
+    <figcaption>Dhows Arrived</figcaption>
+    </figure>
+</div>
 
 # Findings & Conclusion
 This assignment has allowed us to learn more about AI, specifically its capabilities of doing humanities tasks. On first glance, we did not identify any major conclusions from our data. Rather than not having enough information, it lies at the point that nothing particularly ‘interesting’ surfaced from the shipping records.However, through closer inspection and contextual analysis, we were able to identify meaningful patterns—though these observations remain provisional and would require further research beyond our dataset to confirm. Zanzibar, in 1909, stood as a vital maritime trade hub in East Africa. Although under British colonial rule at the time, it maintained strong commercial ties with Arabian traders, particularly those from Oman. The high number of Zanzibar/British dhows indicates local dominance in maritime activity. We also took into account external influences that might affect the data, such as:
@@ -124,11 +132,11 @@ This assignment has allowed us to learn more about AI, specifically its capabili
 Ultimately, while our project began as a technical exercise in digitization and data visualization, it gradually revealed layers of historical insight—underscoring how even seemingly mundane records can illuminate broader narratives when combined with careful analysis and contextual understanding.
 
 ## Sheet Download Links 
-[Dhows.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Dhows.csv)
-[Shipping Report.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Shipping_Report.csv)
+- [Dhows.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Dhows.csv)
+- [Shipping Report.csv](https://github.com/ADAHafizh/adahafizh.github.io/blob/master/assets/csv/Shipping_Report.csv)
 
 # Contributions
-*On this assignment, Ahmad prompted the AI chatbots, created the .csv file Google Sheets, and Dhows graph. Lucas visualized the main table (Shipping Report) into Kepler. We both refined the shipping report table and wrote the markdown post together.*
+*On this assignment, Ahmad prompted the AI chatbots, created the .csv file on Google Sheets, and Dhows graph. Lucas visualized the main table (Shipping Report) into Kepler. We both refined the shipping report table and wrote the markdown post together.*
 
 # Resources
 - Klein, Lauren, et al. "Provocations from the humanities for generative ai research." arXiv preprint arXiv:2502.19190 (2025).

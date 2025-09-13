@@ -5,6 +5,7 @@ tags: ["Unity", "Video Game", "Game Development", "Game Design"]
 image: './pyrodancer/bg-pyrodancer.png'
 startDate: '2024-02-01'
 endDate: '2024-03-07'
+link: 'https://example.com'
 ---
 
 Test ABCD

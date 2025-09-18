@@ -69,10 +69,28 @@ Can there be an alternative where AI is not used in our project and we rely sole
         <figcaption> Bonsai Tree Dispersed </figcaption>
     </figure>
     <figure>
-        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=NNGCLOLPy_Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/gN-UG82AAqM?si=amM4WGP1lCnj_ps4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <figcaption> Ice Cream Dispersed </figcaption>
     </figure>
     </div>
+
+For this week's prototype, I wanted to explore a path that is `Particles System` offered by TD. Specifically, since Yaakulya is working on text-to-image, I am working on the processing part, where by feeding an image to a particle system, it will 'reform' and shape into a new output. 
+
+### How Prototype 3 Works
+
+Essentially, how the prototype works is that it takes an `image input, a vertical, and a horizontal ramp.` Then, we compose all three into three separate values for X, Y, Z. This allows us to determine the coordinates which can be used by the [particlesGpu Palette](https://derivative.ca/UserGuide/Palette:particlesGpu) where we can then add more parameters to adjust how the final output looks. 
+
+<div align ="center">
+    <img src="src\content\blog\capstone-seminar-prototype3\imgNode.png" alt="Node Network Image"></img>
+</div>
+
+In the parameters, I added `noise`, `matte`, and `blur` to change the very colorful ice cream and bonsai tree to a uniform color. 
+
+> **Of course, for the future, I will adjust these colors to suit more 'calming' vibe**
+
+### Next Steps
+
+For the next prototypes, I wanted to finally incorporate **"calm vibes"**. To actually do this, I first have to read some materials on what calm is, how space, color, and other factors play into making people calm. As an initiative, we are planning to meet [Professor Khulood Alawadi](https://nyuad.nyu.edu/en/academics/divisions/engineering/faculty/khulood-alawadi.html), an expert in design field on campus to discuss further and see if we can take this project somewhere! Super excited in what the future entails. 
 
 # Resources
 

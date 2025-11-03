@@ -13,4 +13,38 @@ authors: ['adahafizh']
     <p>Sun Tzu: "I did not say that"</p>
 </div>
 
-# Cameras, Lights, and Projections. 
+# Following Last week
+
+After the lengthy discussion with Professor Nimrah last week, we expanded on the idea of introducing playful water element to our capstone. Essentially, how the experience is going to play out is that `users are entering the space and greeted by water (somewhere in the ground), which they can interact with. The visuals projected into the water would then react, rippling throughout the entire room.` The reaction speaks as "chaos" for the audience. As they move less, they are greeted with a cushion in the center where they can sit down, and contemplate on their actions to let the room bounce back to its equilibrium state.  
+
+> equi·​lib·​ri·​um - a state of balance between opposing forces or actions that is either static (as in a body acted on by forces whose resultant is zero) or dynamic (as in a reversible chemical reaction when the velocities in both directions are equal)
+
+# Wandering Hands 
+
+## Depth Cameras
+
+For this prototype, our group decides to focus on "scaling up" the visuals and trying out the hardest component: that is `lights` and `projections`. We split the work into two: a » I'm handling the projections as per agreed since the beginning, and b » my colleague tries hands on tinkering with NeoPixels RGB Strips to do the lighting. My goal for the projection is simple, yet challenging as will be explained later. 
+
+<div align="center">
+    <p>"Create a motion reactive visuals, that is not visually overwhelming for the water."</p>
+</div>
+
+I borrowed two depth cameras from the IM Equipment: [Intel Realsense](https://realsenseai.com/) and [Kinect Azure](https://realsenseai.com/), both offering tempting advantages and disadvantages, which for now, I am not sure which to pick: 
+
+|                Intel Realsense                |           Microsoft Kinect Azure          |
+|:---------------------------------------------:|:-----------------------------------------:|
+| (+) Very good at low light situation          | (+) Better body tracking with SDK         |
+| (+) Faster response rate                      | (+) Wide FOV allows bigger tracking range |
+| (+) Small and compact                         | (+) Can detect low-texture surfaces       |
+| (-) Needs a lot of tuning                     | (-) Chonky boi, and beeg                  |
+| (-) Only great at close distances within 3x3m | (-) Lower response rate                   |
+
+## Particles 
+
+Following this [tutorial](www.youtube.com/watch?v=GDZoOnzLYGo), I quickly (*by this I mean spending 1-2 hours figuring out why the Realsense did not connect kekw*) installed and played around with depth cameras in TouchDesigner. 
+
+| *Particles Bouncing*  | *Star Wars Warp Drive thingy* |
+|---------------------|-----------------------------|
+|<video autoplay> <source src="https://i.imgur.com/8zk0hi5.mp4"></source> </video>|<video autoplay> <source src="https://i.imgur.com/vr4c4FX.mp4"></source> </video>|
+| *Water Color Attempt* | *3D Grid Blocks*              |
+|<video autoplay> <source src="https://i.imgur.com/YknaBv0.mp4"></source> </video>|<img src="https://i.imgur.com/Y9SUP4C.gif"></img>|

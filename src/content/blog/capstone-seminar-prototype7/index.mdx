@@ -1,0 +1,44 @@
+---
+title: 'Capstone Seminar | Prototype 7'
+description: 'Recognizing Human Parts using Azure Kinect'
+date: 2025-11-12
+tags: ['capstone']
+image: './bg-capstone.png'
+authors: ['adahafizh']
+---
+
+# Following Last week
+
+For this week, I specifically focused on configuring the depth camera (Kinect Azure) so that it can track certain parameters and use it in the visuals. Continuing the previous week visual: *watercolor drawing*, I used Azure's body part recognition and selected `hands` to be the element that I track. TL:DR, what I am doing is basically as follows:
+
+<div align="center">
+    <figure>
+        <img src="https://i.imgur.com/i42oos6.png" alt=""/>
+        <figcaption> Simplified Diagram </figcaption>
+    </figure>
+    <figure>
+        <img src="https://i.imgur.com/FNmB5XR.png" alt=""/>
+        <figcaption> TouchDesigner Network Nodes </figcaption>
+    </figure>             
+</div> 
+
+> Essentially, how the visual works is that I am using a circle shape to be used as a pointer. This circle would then apply paint when it detects movement from the hand to the screen. The paint would then disperse and fade after some time, mimicking painting using watercolor. 
+
+# How It Went
+
+Apparently, there were a lot of things to consider when selecting certain elements from Kinect Azure. What I mean by this is that the camera by default has built-in recognition system for the entire skeleton plus all things accompanying it: hands, finger, legs, pelvis, head, etc. Plus, it is split between three coordinate systems: `x,y,z` meaning that I have to transform 3D information to 2D and then applying to my visual. 
+
+<div align="center">
+    <figure>
+        <img src="https://i.imgur.com/EWgVFR5.gif" alt=""/>
+        <figcaption> Wrong element plugging causing left hand to go up and down </figcaption>
+    </figure>
+    <figure>
+        <img src="https://i.imgur.com/03RQ2tB.gif" alt=""/>
+        <figcaption> Linking coordinate position of my hand to the circle </figcaption>
+    </figure>
+    <figure>
+        <img src="https://i.imgur.com/WYeg8fk.gif" alt=""/>
+        <figcaption> Testing both hand recognition while sitting </figcaption>
+    </figure>             
+</div> 

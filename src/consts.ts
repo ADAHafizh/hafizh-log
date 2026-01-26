@@ -21,12 +21,8 @@ export const NAV_LINKS: SocialLink[] = [
     label: 'capstone',
   },
   {
-    href: '/tags/future-punk',
-    label: 'future punk',
-  },
-  {
-    href: '/tags/understanding-im',
-    label: 'understanding IM',
+    href: '/tags/machinelab',
+    label: 'machine lab',
   },
     {
     href: '/tags',

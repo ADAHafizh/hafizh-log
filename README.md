@@ -1,4 +1,4 @@
-# Website for Fall 2025 
+# Blog for IM Class 
 
-Future Punk, Understanding IM, Capstone Seminar 
-More to be updated. 
+Active: Machine Lab, Capstone Seminar & Project
+Archive: DAAH, UIM, Future Punk

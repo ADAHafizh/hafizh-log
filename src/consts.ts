@@ -21,7 +21,7 @@ export const NAV_LINKS: SocialLink[] = [
     label: 'capstone',
   },
   {
-    href: '/tags/machinelab',
+    href: '/tags/machine-lab',
     label: 'machine lab',
   },
     {

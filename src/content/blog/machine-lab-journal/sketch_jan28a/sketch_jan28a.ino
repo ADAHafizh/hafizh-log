@@ -1,7 +1,8 @@
 #include <Servo.h> 
 
-const  byte potMeter=A3;     //Potentiometer Port
-const long interval = 0 // Interval for speed 
+const  byte potMeter = A3;     // Potentiometer Port
+const byte buttonPin = 2; // Button pin for easier changing 
+const long interval = 0; // Interval for speed 
 int potMeterValue=0;  // Potentiometer initial value 
 byte  rotation=0; // Rotation for servo 
 
@@ -45,6 +46,8 @@ public:
     servo.detach();
   }
   
+
+  // If we have update, then we also need to save the update information in the event that the button is not pressed, so that the counter doesn't reset. Let's add that. 
   void Update()
   {
     if((millis() - lastUpdate) > updateInterval)  // time to update

@@ -1,6 +1,6 @@
 #include <Servo.h> 
 
-const  byte potMeter = A3;     // Potentiometer Port
+const  byte potMeterPin = A3;     // Potentiometer Port
 const byte buttonPin = 2; // Button pin for easier changing 
 const long interval = 0; // Interval for speed 
 int potMeterValue=0;  // Potentiometer initial value 
@@ -26,7 +26,7 @@ class Sweeper
   int pos;              // current servo position 
   int increment;        // increment to move for each interval
   int  updateInterval;      // interval between updates
-  int rotation 
+  int rotation;
   unsigned long lastUpdate; // last update of position
 
 public: 
@@ -65,7 +65,7 @@ public:
 
   void Rotation(int rotation)
   {
-    servo.write(rotation)
+    servo.write(rotation);
   }
 };
  
@@ -75,7 +75,7 @@ void setup()
 { 
   Serial.begin(9600);
   pinMode(buttonPin, INPUT_PULLUP); 
-  pinMode(potMeter,INPUT);  //potentiometer is an input=>it sends information to the computer
+  pinMode(potMeterPin,INPUT);  //potentiometer is an input=>it sends information to the computer
   sweeper1.Attach(10);
 } 
  
@@ -94,9 +94,9 @@ void loop()
 
   // Debugging 
   static unsigned long lastPrint = 0;
-  if (milis() - lastPrint > 500) {
+  if (millis() - lastPrint > 500) {
     Serial.print("Speed Interval: ");
     Serial.println(speed);
-    lastPrint = milis();
+    lastPrint = millis();
   }
 }

@@ -47,7 +47,7 @@ public:
   }
   
   // If we have update, then we also need to save the update information in the event that the button is not pressed, so that the counter doesn't reset. Let's add that. 
-  void Update()
+  void Update(int speed)
   {
     if((millis() - lastUpdate) > updateInterval)  // time to update
     {

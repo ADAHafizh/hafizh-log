@@ -1,55 +1,23 @@
 #include <Servo.h> 
 
+const  byte potMeter=A3;     //Potentiometer Port
+const long interval = 0 // Interval for speed 
+int potMeterValue=0;  // Potentiometer initial value 
+byte  rotation=0; // Rotation for servo 
+
+unsigned long previousMillis = 0;  // will store last time LED was updated
+
 // Code taken from Sparkfun 
 // Written & Modified by Ahmad Dahlan Hafizh
 // 28 Jan 2026
 
-class Flasher
-{
-	// Class Member Variables
-	// These are initialized at startup
-	int ledPin;      // the number of the LED pin
-	long OnTime;     // milliseconds of on-time
-	long OffTime;    // milliseconds of off-time
+///// HOW THE PROGRAM WORKS //////
 
-	// These maintain the current state
-	int ledState;             		// ledState used to set the LED
-	unsigned long previousMillis;  	// will store last time LED was updated
+/// By default, Servo library does not have a speed control. Which means to get a speed, we need to have the rotation of the servo divided by certain amount of time to reach it
+/// In other words, we need a clock counter (blink without delay), and then apply that to the Sweeper class
+/// We also need to map out the potentiometer values to the speed 
 
-  // Constructor - creates a Flasher 
-  // and initializes the member variables and state
-  public:
-  Flasher(int pin, long on, long off)
-  {
-	ledPin = pin;
-	pinMode(ledPin, OUTPUT);     
-	  
-	OnTime = on;
-	OffTime = off;
-	
-	ledState = LOW; 
-	previousMillis = 0;
-  }
-
-  void Update()
-  {
-    // check to see if it's time to change the state of the LED
-    unsigned long currentMillis = millis();
-     
-    if((ledState == HIGH) && (currentMillis - previousMillis >= OnTime))
-    {
-    	ledState = LOW;  // Turn it off
-      previousMillis = currentMillis;  // Remember the time
-      digitalWrite(ledPin, ledState);  // Update the actual LED
-    }
-    else if ((ledState == LOW) && (currentMillis - previousMillis >= OffTime))
-    {
-      ledState = HIGH;  // turn it on
-      previousMillis = currentMillis;   // Remember the time
-      digitalWrite(ledPin, ledState);	  // Update the actual LED
-    }
-  }
-};
+///// CLASS SERVO /////
 
 class Sweeper
 {
@@ -57,6 +25,7 @@ class Sweeper
   int pos;              // current servo position 
   int increment;        // increment to move for each interval
   int  updateInterval;      // interval between updates
+  int rotation 
   unsigned long lastUpdate; // last update of position
 
 public: 
@@ -91,27 +60,49 @@ public:
       }
     }
   }
+
+  void Rotation(int rotation)
+  {
+    servo.write(rotation)
+  }
 };
  
- 
-Flasher led1(11, 123, 400);
-Flasher led2(12, 350, 350);
-Flasher led3(13, 200, 222);
-
-Sweeper sweeper1(15);
-Sweeper sweeper2(25);
+Sweeper sweeper1(25);
  
 void setup() 
 { 
   Serial.begin(9600);
   pinMode(2, INPUT_PULLUP); 
-  sweeper1.Attach(9);
-  sweeper2.Attach(10);
+  pinMode(potMeter,INPUT);  //potentiometer is an input=>it sends information to the computer
+  const long interval = potMetervalue;  // interval at which to blink (milliseconds)
+  sweeper1.Attach(10);
 } 
  
  
 void loop() 
 { 
+  /// CLOCK CONTROL ///
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+  /// POTENTIOMETER /// 
+
+  potMeterValue=analogRead(potMeter);
+  rotation=map(potMeterValue,0,1023,0,180);      
+  myServo.write(rotation);
+  delay(1000);              //you can delete the delay, but on the serial  monitor  there will be too much information
+  Serial.print("Potmetervalue: ");
+  Serial.print(potMeterValue);             
+  Serial.print("\	");
+  Serial.print("rotation: ");
+  Serial.println(rotation);
+  Serial.println();
+
+
   sweeper1.Update();
   
   if(digitalRead(2) == HIGH)

@@ -46,7 +46,6 @@ public:
     servo.detach();
   }
   
-
   // If we have update, then we also need to save the update information in the event that the button is not pressed, so that the counter doesn't reset. Let's add that. 
   void Update()
   {
@@ -80,22 +79,24 @@ void setup()
   sweeper1.Attach(10);
 } 
  
- 
 void loop() 
 { 
 
   // Read Potentiometer and map to a speed interval (e.g 5ms to 100ms)
   int potValue =  analogRead(potMeterPin);
-  int speed = map(potValue, 0, 1023, 5, 100)
+  int speed = map(potValue, 0, 1023, 5, 100);
 
-  sweeper1.Update();
-  
-  if(digitalRead(2) == LOW)
+  // Check button state 
+  if (digitalRead(buttonPin) == LOW)
   {
-     sweeper2.Update();
-    //  led1.Update();
+    sweeper1.Update(speed);
   }
-  
-  // led2.Update();
-  // led3.Update();
+
+  // Debugging 
+  static unsigned long lastPrint = 0;
+  if (milis() - lastPrint > 500) {
+    Serial.print("Speed Interval: ");
+    Serial.println(speed);
+    lastPrint = milis();
+  }
 }

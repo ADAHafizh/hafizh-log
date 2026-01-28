@@ -30,10 +30,10 @@ class Sweeper
   unsigned long lastUpdate; // last update of position
 
 public: 
-  Sweeper(int interval)
+  // We can delete the need for passing int values in Sweeper() because we are going to use update 
+  Sweeper()
   {
-    updateInterval = interval;
-    increment = 1;
+    lastUpdate = 0; 
   }
   
   void Attach(int pin)
@@ -70,45 +70,27 @@ public:
   }
 };
  
-Sweeper sweeper1(25);
+Sweeper sweeper1;
  
 void setup() 
 { 
   Serial.begin(9600);
-  pinMode(2, INPUT_PULLUP); 
+  pinMode(buttonPin, INPUT_PULLUP); 
   pinMode(potMeter,INPUT);  //potentiometer is an input=>it sends information to the computer
-  const long interval = potMetervalue;  // interval at which to blink (milliseconds)
   sweeper1.Attach(10);
 } 
  
  
 void loop() 
 { 
-  /// CLOCK CONTROL ///
 
-  unsigned long currentMillis = millis();
-
-  if (currentMillis - previousMillis >= interval) {
-    // save the last time you blinked the LED
-    previousMillis = currentMillis;
-
-  /// POTENTIOMETER /// 
-
-  potMeterValue=analogRead(potMeter);
-  rotation=map(potMeterValue,0,1023,0,180);      
-  myServo.write(rotation);
-  delay(1000);              //you can delete the delay, but on the serial  monitor  there will be too much information
-  Serial.print("Potmetervalue: ");
-  Serial.print(potMeterValue);             
-  Serial.print("\	");
-  Serial.print("rotation: ");
-  Serial.println(rotation);
-  Serial.println();
-
+  // Read Potentiometer and map to a speed interval (e.g 5ms to 100ms)
+  int potValue =  analogRead(potMeterPin);
+  int speed = map(potValue, 0, 1023, 5, 100)
 
   sweeper1.Update();
   
-  if(digitalRead(2) == HIGH)
+  if(digitalRead(2) == LOW)
   {
      sweeper2.Update();
     //  led1.Update();

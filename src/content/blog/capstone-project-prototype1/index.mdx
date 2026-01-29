@@ -77,6 +77,20 @@ I've also been thinking on how this simulation would look like if it is `scaled 
 
 > It is an abstract machine that can be in exactly one of a finite number of states at any given time. The FSM can change from one state to another **in response to some inputs**; the change from one state to another is called a transition (Wikipedia, hehe)
 
-# Resources 
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/GkiGpKX.gif" alt="Voronoi - TD" style="width: 100%;"/>
+        <figcaption> TD FSM using Logic CHOPs</figcaption>
+    </figure>
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/7LVl3Ta.png" alt="Voronoi - TD" style="width: 100%;"/>
+        <figcaption> How the states work</figcaption>
+    </figure>
+</div>
 
+In TouchDesigner, the way I implement now is very simple using `Logic CHOPs,` where I track the movement and speed of a mouse and change the FSM into three pre-defined colors (states). Unfortunately, I had to cheat a bit by implementing it using Alpha instead of smoothly blending, which is a homework that I have to figure out moving forward. 
+
+# Resources 
+- [Pseudo Voronoi - Elekktronaut](https://www.youtube.com/watch?v=zMunf5NaR9E)
+- [TouchDesigner Logic CHOPs](https://youtu.be/7Gz57z0UEvo?si=DVBu6nDI5fGPns4j)
 

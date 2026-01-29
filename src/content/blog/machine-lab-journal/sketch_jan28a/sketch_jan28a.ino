@@ -49,16 +49,24 @@ public:
   // If we have update, then we also need to save the update information in the event that the button is not pressed, so that the counter doesn't reset. Let's add that. 
   void Update(int speed)
   {
-    if((millis() - lastUpdate) > updateInterval)  // time to update
+    if((millis() - lastUpdate) > speed)  // time to update
     {
       lastUpdate = millis();
       pos += increment;
+
       servo.write(pos);
       Serial.println(pos);
-      if ((pos >= 180) || (pos <= 0)) // end of sweep
+
+      if ((pos >= 180)) // end of sweep
       {
-        // reverse direction
-        increment = -increment;
+        pos = 180; 
+        increment = -1;
+      }
+
+      else if (pos <= 0)
+      {
+        pos = 0;
+        increment = 1;
       }
     }
   }

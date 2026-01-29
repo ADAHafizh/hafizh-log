@@ -13,17 +13,28 @@ When we were discussing on how to improve visuals for our capstone, we were hell
 
 > The partitioning of a plane with `n` points into convex polygons such that each polygon contains exactly one generating point and every point in a given polygon is closer to its generating point than to any other. A Voronoi diagram is sometimes also known as a Dirichlet tessellation. The cells are called **Dirichlet regions, Thiessen polytopes, or Voronoi polygons** (from Wolfram Mathworld)
 
-<div style="display: flex; justify-content: center; gap: 20px;">
+<div style="display: flex; justify-content: center; gap: 5px;">
     <figure style="text-align: center;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Euclidean_Voronoi_diagram.svg" alt="Voronoi 1" style="width: 100%;"/>
         <figcaption>Voronoi Diagram A</figcaption>
     </figure>
 
     <figure style="text-align: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Euclidean_Voronoi_diagram.svg" alt="Voronoi 2" style="width: 100%;"/>
+        <img src="https://mathworld.wolfram.com/images/eps-svg/VoronoiDiagram_700.svg" alt="Voronoi 2" style="width: 100%;"/>
         <figcaption>Voronoi Diagram B</figcaption>
     </figure>
 </div> 
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://images.newscientist.com/wp-content/uploads/2020/09/16181027/credit_mohamed-khaki-eyeem-getty-images_web.jpg?width=837" alt="Voronoi 2" style="width: 100%;"/>
+        <figcaption> Ocean Waves - Khaki Eyeem, Getty Images</figcaption>
+    </figure>
+</div> 
+
+## What is wrong with previous waves?
+
+Unfortunately, as I observe closely to the recordings from previous capstone mini exhibition, I noticed that the use of 3D rendering for feedback waves in TouchDesigner and scaling it up was insanely taxing for my computer. The reason is also because the computer also streams high-bandwith data from Kinect Azure. This means moving forward, I need to think on creating visuals that are `"optimized"` by reducing the amount of feedback loops. 
 
 # How it Works
 

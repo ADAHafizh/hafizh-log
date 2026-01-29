@@ -24,6 +24,10 @@ This assignment was a really great refresher for me on servos, circuits, and Ard
         <img src="https://i.imgur.com/aPcZLpP.gif" alt="slow servo"></img>
         <figcaption> Servo slow</figcaption>
     </figure>
+    <figure>
+        <img src="https://i.imgur.com/ij8ScOs.png" alt="slow servo"></img>
+        <figcaption> Circuit</figcaption>
+    </figure>
 </div>
 
 # What was tricky?
@@ -34,7 +38,7 @@ When I was programming the Arduino, I stopped after a while and just thought of 
 - When the button is not pressed, then the servo stops, but when its pressed, it has to continue moving with the same speed and state from where it left off previously 
 - This also means we have to change `some` parts of the original SparkFun code
 
-```astro title="src/components/Callout.astro" collapse={2-22} {32-49} {81-89}
+```astro title="src/components/Callout.astro" collapse={2-22, 32-49, 81-89} {50-72} {93-95}
 #include <Servo.h> 
 
 const  byte potMeterPin = A3;     // Potentiometer Port
@@ -146,6 +150,7 @@ void loop()
   }
 }
 ```
+In the beginning, because I was using SparkFun's original code for turning from 0-180-0, it only worked one way for some reason? But then, I just changed the `pos` code to increment and decrement only when reaching 180 and 0 which worked. Overall, this was pretty fun practice!
 
 # Resources 
 

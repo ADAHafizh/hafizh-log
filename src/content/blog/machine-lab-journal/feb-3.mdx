@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components'
 
 # Giga Arcade? Mega Arcade?
 
-As the class majority agreed that we will proceed with video games as the theme for the final machine, I began to spun my brain to see if there's some interesting thing that we can bring to the table. A thought crossed my mind to create **a giant "wayback machine"** which is just a big arcade machine compiling multiple "retro" games, taking things a step further beyond what Intro to IM can offer. I imagine there would be dozens of button that control individual or interconnected modules inside the machine. Would it end up as a control panel instead? Perhaps. But if we cover it up enough, people will only notice it as arcade machine. 
+As the class majority agreed that we will proceed with video games as the theme for the final machine, I began to spun my brain to see if there's some interesting thing that we can bring to the table. A thought crossed my mind to create **a giant "wayback machine"** which is just a big arcade machine compiling multiple "retro" games, taking things a step further beyond what `Intro to IM` can offer. I imagine there would be dozens of button that control individual or interconnected modules inside the machine. Would it end up as a control panel instead? Perhaps. But if we cover it up enough, people will only notice it as arcade machine. 
 
 # Inspiration Deck 
 
@@ -34,4 +34,31 @@ For the bird, plugging it (printed paper) into a cardboard seems a pretty solid 
 
 Regarding the machine interaction, I'm not entirely sure which one is the best course of action. For instance, assuming the user presses a button that starts the game, if I am prioritizing longevity, I might program the entire game play course so that it plays for a certain amount of time until the bird intentionally crashes. Or take the hard route and allowing the players to control the bird, program game start and overs, and potentially running into human bugs and errors.
 
+# Inspecting Machinery
 
+In the short time I had interacting with the carnival machine from two years ago, there are a few insights that I gathered, some which give me a "picture" on how I might implement mechanisms for the Flappy Bird.
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/bhAE9bK.gif" alt="deck" style="width: 100%;"/>
+        <figcaption> Very creative way to do "Rocking" movements </figcaption>
+    </figure>
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/IQPr8F6.gif" alt="deck" style="width: 100%;"/>
+        <figcaption> I suspect wiring issue with the conveyor belt in the back because the front works? </figcaption>
+    </figure>
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/iKWbf3M.gif" alt="deck" style="width: 100%;"/>
+        <figcaption> Not sure why the rotation does not work or if there's any in the first place </figcaption>
+    </figure>
+</div> 
+
+- The movements provided by the motors are very limited, and while it may be "limiting," nothing stops imagination from creating unique visuals.
+- Some movement may look simple, but in reality, connecting the individual modules into a single coherent machine may be more work than said. 
+- It is imperative that we build the machine like building blocks, I suppose this is to easily debug things as it grows larger. 
+- The waves for the ship uses Rack and Pinion, I wonder if implementing it vertically is possible?
+
+# Extra Resources:
+
+- [Vertical Rack and Pinion](https://www.youtube.com/watch?v=N6F3D6s18dQ)
+- [Conveyor Belt with IR](https://www.youtube.com/watch?v=LA65y0QgLNQ)

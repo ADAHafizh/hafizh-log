@@ -21,8 +21,8 @@ Continuing from previous post, I've redone the way I implement the state machine
 </div> 
 
 - **State Controllers:** The brain that determines and knows what state entire network is, controlled (for now) with `keyboard input.` Will be using real-time data stream from sensors in the future.  
-- **Visual Network: ** The place where I assemble all of the visuals, they can be entered through scrolling. Each are independent with one another.
-- **Preview Node: ** A node that allows the user to see what is the current and next selection of visual.
+- **Visual Network:** The place where I assemble all of the visuals, they can be entered through scrolling. Each are independent with one another.
+- **Preview Node:** A node that allows the user to see what is the current and next selection of visual.
 
 <div style="display: flex; justify-content: center; gap: 5px;">
     <figure style="text-align: center;">
@@ -33,6 +33,8 @@ Continuing from previous post, I've redone the way I implement the state machine
 
 # Visuals: Idle, Calm, Active prototypes
 
+## Idle 
+
 When the audience looks at the space, they will be greeted with a "living" voronoi waves from previous prototype that I have adjusted the colors and behavior such that it is attractive and active enough to be noticed by the audience. Originally, it had a dark color background, but considering the color palette we've discussed for the "calm" state, `I tried experimenting with making sure that the audience's eyes don't get flashbang-ed.`
 
 <div style="display: flex; justify-content: center; gap: 5px;">
@@ -42,9 +44,32 @@ When the audience looks at the space, they will be greeted with a "living" voron
     </figure>
 </div> 
 
-> 
+## Active State
 
+This state is still very much work in progress because I've got a lot of ideas on what to do with it just not implementing it right now. But borrowing Yaakulya's space obsession, I made something akin to the sun's surface layer with colors borrowing from idle and calm states. This visual mostly rely on [Edge TOPs](https://derivative.ca/UserGuide/Edge_TOP) and [Displace TOPs](https://docs.derivative.ca/Displace_TOP) to create an overlapping sphere with added noise to offset it, creating something akin to a [sun's flare.](https://www.space.com/17160-sun-atmosphere.html) 
 
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://science.nasa.gov/wp-content/uploads/2024/06/x-flare-may-8-2024-131-171-red-crop2.jpg?w=1280" alt="solar flare inspo" style="width: 100%;"/>
+        <figcaption> <i> Solar Flare - Nasa.gov </i> </figcaption>
+    </figure>
+    
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/11Wgq28.gif" alt="solar flare inspo" style="width: 100%;"/>
+        <figcaption> <i> Active state prototype </i> </figcaption>
+    </figure>
+</div> 
+
+## Calm State
+
+Following the orb as a center piece and glowing golden "vibes" from the visual inspiration deck, I went a very subtle wavy moving gradient. On top of that, I added a math function through [Pattern CHOP](https://derivative.ca/UserGuide/Pattern_CHOP) to control the motion of the bubbles. They are independent from one another, which means, using data stream from websocket (hooray 😎), many parameters can be adjusted to fit our needs. 
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/vL9sFoW.gif" alt="Calm State" style="width: 100%;"/>
+        <figcaption> <i> Bubbles and waves~~ </i> </figcaption>
+    </figure>
+</div>
 
 # Resources 
 

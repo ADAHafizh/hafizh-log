@@ -1,0 +1,51 @@
+---
+title: 'Capstone Project | Prototype 2.5 & 3'
+description: 'Visual states, Inspiration deck, and Web socket'
+date: 2026-02-08
+tags: ['capstone']
+image: './bg-capstone.png'
+authors: ['adahafizh']
+---
+
+import { YouTube } from 'astro-embed';
+
+# Smarter State Machines
+
+Continuing from previous post, I've redone the way I implement the state machine moving forward. This time, I used Touchdesigner's [network](https://derivative.ca/UserGuide/Network) systems output and selecting them through user input that is determined by a group of CHOPs. For summary, essentially I split the workload into three modules: 
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/7sOrQQZ.png" alt="State Machine Graph" style="width: 100%;"/>
+        <figcaption>Diagram to make life understandable</figcaption>
+    </figure>
+</div> 
+
+- **State Controllers:** The brain that determines and knows what state entire network is, controlled (for now) with `keyboard input.` Will be using real-time data stream from sensors in the future.  
+- **Visual Network: ** The place where I assemble all of the visuals, they can be entered through scrolling. Each are independent with one another.
+- **Preview Node: ** A node that allows the user to see what is the current and next selection of visual.
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/ckUJR9m.png" alt="State Machine UI" style="width: 100%;"/>
+        <figcaption>TD Interface</figcaption>
+    </figure>
+</div> 
+
+# Visuals: Idle, Calm, Active prototypes
+
+When the audience looks at the space, they will be greeted with a "living" voronoi waves from previous prototype that I have adjusted the colors and behavior such that it is attractive and active enough to be noticed by the audience. Originally, it had a dark color background, but considering the color palette we've discussed for the "calm" state, `I tried experimenting with making sure that the audience's eyes don't get flashbang-ed.`
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/ATRrbT1.gif" alt="State Machine UI" style="width: 100%;"/>
+        <figcaption> <i> Not entirely sure whether this worked or not, but it is a start. </i> </figcaption>
+    </figure>
+</div> 
+
+> 
+
+
+
+# Resources 
+
+

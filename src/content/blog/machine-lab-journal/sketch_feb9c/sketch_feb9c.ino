@@ -2,7 +2,7 @@
 
 int in1 = 8; // H-bridge inputs
 int in2 = 9;
-int ConA = 10; 
+int ConA = 10; // Controller A (ENA)
 int potPin = A0; // Potentiometer Analog Input
 int speed1; // Variable for Motor Speed
 

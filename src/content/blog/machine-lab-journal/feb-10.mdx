@@ -7,9 +7,56 @@ image: './bg-machinelab.png'
 authors: ['adahafizh']
 ---
 
+import Callout from '@/components/Callout.astro'
+import { Icon } from 'astro-icon/components'
+
 # DC Motor and Potentiometers. 
 
 For this week's testing with DC Motor, I found it intriguing with some problems that came along with it, and somehow the method to fixing it just *works?* Anyhow, I began by continuing off from last week's code when the machine was working fine. Then, I added a potentiometer to `control the speed` and `direction.` 
+
+```astro title="src/components/Callout.astro" {21-30}
+// THIS IS FOR POTENTIOMETER CONTROLLING THE SPEED
+
+int in1 = 8; // H-bridge inputs
+int in2 = 9;
+int ConA = 10; // Controller A (ENA)
+int potPin = A0; // Potentiometer Analog Input
+int speed1; // Variable for Motor Speed
+  
+void setup() {
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(ConA, OUTPUT);
+
+  Serial.begin(9600);
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+}
+
+void loop() {
+  int val = analogRead(potPin);
+  // We map the values of potentiometer to PWM range 
+  speed1 = map(val, 0, 1023, 0, 255);
+
+  // Then we feed it into the motor
+  analogWrite(ConA, speed1);
+
+  // To make things easier, I mapped the speed into percentages so I can read it easier to debug it as well
+  int percentage = map(speed1, 0, 255, 0, 100);
+
+  // Printing the values
+  Serial.print("Potentiometer: ");
+  Serial.print(val);
+  Serial.print(" | PWM Signal: ");
+  Serial.print(speed1);
+  Serial.print(" | Motor Speed: ");
+  Serial.print(percentage);
+  Serial.println("%");
+
+  delay(100);  // Small delay so the text doesn't fly by too fast to read
+}
+```
 
 Initially, after tweaking some parts of the code to fit the potentiometer, the motor suddenly stopped working and had no sounds coming off of it. When I checked the potentiometer using `Serial.write`, I noticed that it was jumping up and down in a weird fashion. Somewhere afterwards, I changed the potentiometer and/or then plugged it directly into the Arduino board to see if it would fix anything. 
 
@@ -50,4 +97,69 @@ In the morning, I saw a [YouTube short](https://www.youtube.com/shorts/eBiscwtcV
 </div>
 
 # Schematics & Code Snippets
+
+Feb 9, 2026 21:30 - After plunging head first into the bed, I pondered and wondered. Perhaps I should've added a switch button to control the direction of the DC motor and potentiometer to control the speed instead. While I did not have access to the parts in IM Lab, I could use Tinkercad to do the work!
+
+```astro title="src/components/Callout.astro" {8-11} {23-31} {33-40}
+// THIS IS THE CODE WITH SWITCH BUTTON TO CONTROL THE MOTOR DIRECTION 
+// WE ACHIEVE THIS BY USING INPUT_PULLUP TO KEEP THE INTERNAL RESISTOR TO HIGH; PRESSING IT BRINGS IT TO LOW
+
+int in1 = 8; 
+int in2 = 9;
+int ConA = 10; 
+int potPin = A0;
+int buttonPin = 2; // Added button pin 
+
+bool isForward = true;   // Variable to keep track of the motor direction
+bool lastButtonState = HIGH; // Variable to keep track of the button state
+
+void setup() {
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(ConA, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP); // Internal resistor 
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 1. We first check the button state
+  bool currentButtonState = digitalRead(buttonPin);
+
+  // If button is pressed (LOW) and it wasn't pressed before, then
+  if (currentButtonState == LOW && lastButtonState == HIGH) {
+    isForward = !isForward; // Toggle the direction (true becomes false, etc)
+    delay(50); // For ease-ness sake, we add a delay here so it doesn't jump. But improvements can be made using no delay() clocks for future codes.
+  }
+  lastButtonState = currentButtonState;
+
+  // 2. Then, we set the direction of the motor 
+  if (isForward) {
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+  } else {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+  }
+
+  // 3. Handling Speed
+  int val = analogRead(potPin);
+  int speed1 = map(val, 0, 1023, 0, 255);
+  analogWrite(ConA, speed1);
+
+  // 4. Debugging 
+  Serial.print("Dir: ");
+  Serial.print(isForward ? "FORW" : "BACK");
+  Serial.print(" | Speed: ");
+  Serial.print(map(speed1, 0, 255, 0, 100));
+  Serial.println("%");
+
+  delay(10); 
+}
+```
+
+Feb 9, 2026 23:00 - Tinkercad is failing me because schematic viewer is not working in all browsers 😭. Will upload once maintenance is finished. 
+
+Also, I blipped out and forgot to commit to Github before making changes and afterwards. Turns out tinkering makes your forget about time :Port
+
 

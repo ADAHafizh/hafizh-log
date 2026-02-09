@@ -5,7 +5,7 @@ int in2 = 9;
 int ConA = 10; // Controller A (ENA)
 int potPin = A0; // Potentiometer Analog Input
 int speed1; // Variable for Motor Speed
-
+  
 void setup() {
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);

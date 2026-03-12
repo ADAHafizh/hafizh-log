@@ -21,7 +21,7 @@ This post contains a very long reflective journey from the previous post all the
 # Websocket Integration - ☑️
 
 One of the toughest hurdles of two semesters is finally done! We finally truly figured out how to send loads of JSON packets into TouchDesigner and parsing them. It works by having a **JSON parser** and modifying the `Websocket DAT` which then we feed into a `Table DAT`. From there, we can feed the values into a CHOP and arbitrarily choose, modify, or manipulate them the way we want them to be. 
-
+ 
 <div style="display: flex; justify-content: center; gap: 5px;">
     <figure style="text-align: center;">
         <img src="https://i.imgur.com/FvoYWv1.gif" alt="WS Test" style="width: 100%;"/>
@@ -87,5 +87,14 @@ def onReceiveText(dat, rowIndex, message, *args):
 
 Following the discussion after [Post 3](https://hafizh-log.vercel.app/blog/capstone-project-prototype3), we decided to double down on having `fluid-ish` waves as the meat and bread moving forward for Senspace. How this was possible is by converting the solar flare "simulation/effects" base visual into using the same visual as the first one. It essentially works by using `displace` and `feedbackEdge` to loop the visual input multiple times, plus giving it extra spices creates the visuals as such:
 
-**put image here**
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <video width="100%" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/R0FF4SP.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </source>
+        </video>
+        <figcaption>Manipulating circle shape through fed WS values</figcaption>
+    </figure>
+</div>
 

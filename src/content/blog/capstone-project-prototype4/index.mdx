@@ -90,11 +90,31 @@ Following the discussion after [Post 3](https://hafizh-log.vercel.app/blog/capst
 <div style="display: flex; justify-content: center; gap: 5px;">
     <figure style="text-align: center;">
         <video width="100%" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/CWWt637.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </source>
+        </video>
+        <figcaption> All visual states </figcaption>
+    </figure>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/CD2fKuk.png" alt="WS Test" style="width: 100%;"/>
+        <figcaption> How the states work</figcaption>
+    </figure>
+</div> 
+
+The states work by observing the current `activeLayers` value from the websocket and then inserting lag and caching them so that they don't suddenly "jump" between states. Then a Logic networks convert them into a switch which allows the transition between the values. In short, the `Controller` in our TouchDesigner interface manages and acts as the brain that detects and control the visual states. 
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <video width="100%" autoplay loop muted playsinline>
             <source src="https://i.imgur.com/R0FF4SP.mp4" type="video/mp4">
             Your browser does not support the video tag.
             </source>
         </video>
-        <figcaption>Manipulating circle shape through fed WS values</figcaption>
+        <figcaption> Added transition using displacement networks </figcaption>
     </figure>
 </div>
 

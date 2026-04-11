@@ -60,27 +60,51 @@ Notes:
 - Idea: use distance measuring sensor and see whether it moves forward or backward, learning to walk (*Invent Algorithm*)
 Tower Pro --> Good brand 
 
-# Quadrupedalism
-
-<YouTube id="https://youtube.com/shorts/CqC7hz64ZQk?si=L07wPJZ1a-fJ9Uqu" />
 
 # Progress Update (12 Apr): Shopping Cart List 
 
+For this week, my focus has been so much pivoted towards capstone that I almost forgot about this class. But, that being said, I spent quite some time researching two things: `a) approaching this Quadrupedal robot through supporting lesson materials` and `b) searching for the stores that could provide me with all the necessary ingredients`
+
+### Quadrupedalism
+
+A form of locomotion in which animals have four legs that are used to bear weight and move around
+
+<YouTube id="https://youtube.com/shorts/CqC7hz64ZQk?si=L07wPJZ1a-fJ9Uqu" />
+
+### Inverse Kinematics 
+
+A computational technique used in robotics and animation to calculate necessary joint angles and positions for a manipulator (arm, leg, or rig) to reach a specific end-effector target location and orientation. There's a [python simulation program](https://github.com/rickarter/Inverse-kinematics) that is pretty cool to play around with the concept. 
+
+<YouTube id="https://youtu.be/SGF3sE2fe_k?si=GqRQu0S-MvG_s57z" />
+
+## Approaching the project
+
+I think there are a few things that we need to consider: 
+
+- **Motor stress test:** We have to test out check out the servo motor's weight tolerance and range of motion.
+- **Center of mass:** Considering we might put Arduino + shield + battery pack, and maybe on top of cardboard, can we see where the contraption's center of mass is?
+- **Motion experiment:** Like they said, in theory there is no difference, but we do need to test out how the code translates to motion. Despite being slow, I think approaching using `"Crawling"` might be fun, where only one leg moves at a time and the other three stay grounded.
+
 ### Stores
-+[Starelectric](https://www.tokopedia.com/starlectric/product)
+I've also taken a look into a lot of stores from Tokopedia and Shopee.
 
-+[Solusiperabot](https://www.tokopedia.com/solusiperabot)
+> This one is great because all the tools and wires and components are from a single store so I only need to have one delivery fee
+-[CNC Store Bandung](https://www.tokopedia.com/cncstorebandung)
+--[Wire Cutter](https://www.tokopedia.com/cncstorebandung/tang-potong-kawat-kabel-side-cutting-plier-wire-cutter-1731127914466936382?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Wire Stripper](https://www.tokopedia.com/cncstorebandung/tang-kupas-kabel-spesialis-6-inch-wire-stripper-tuosen-kabel-konektor-penghubung-1731127910496831038?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Single Core Cables](https://www.tokopedia.com/cncstorebandung/kabel-tunggal-mini-wire-single-core-tinned-cu-permeter-hitam-merah-hijau-kuning-putih-0-3mm-merah-eadf5?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Cable Rolls (single or multi-colored)](https://www.tokopedia.com/cncstorebandung/kabel-jumper-tunggal-awg30-untuk-breadboard-per-satu-roll-1731702447272724030?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[TOWERPRO MOTOR SERVO MG996R MG996](https://www.tokopedia.com/cncstorebandung/cnc-towerpro-motor-servo-mg996r-mg996-metal-gear-upgrade-mg995?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[TowerPro Motor Servo SG90 SG-90 9G](https://www.tokopedia.com/cncstorebandung/towerpro-motor-servo-sg90-sg-90-9g-servo-mini-180-untuk-arduino-robotik-diy-project-1731127914323150398?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Expansion Shield](https://www.tokopedia.com/cncstorebandung/cnc-io-expansion-shield-extension-board-for-arduino-nano-uno-30?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Jumper Cables 15CM](https://www.tokopedia.com/cncstorebandung/40pcs-kabel-jumper-cable-15cm-male-male-female-female-male-female-male-to-male-86a4b?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+--[Jumper Cables 10CM](https://www.tokopedia.com/cncstorebandung/kabel-jumper-40pcs-10cm-male-to-female-female-to-female-male-to-male-dupont-1731762451083265598?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
 
-+[CNC Store Bandung](https://www.tokopedia.com/cncstorebandung)
-++[Wire Cutter](https://www.tokopedia.com/cncstorebandung/tang-potong-kawat-kabel-side-cutting-plier-wire-cutter-1731127914466936382?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Wire Stripper](https://www.tokopedia.com/cncstorebandung/tang-kupas-kabel-spesialis-6-inch-wire-stripper-tuosen-kabel-konektor-penghubung-1731127910496831038?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Single Core Cables](https://www.tokopedia.com/cncstorebandung/kabel-tunggal-mini-wire-single-core-tinned-cu-permeter-hitam-merah-hijau-kuning-putih-0-3mm-merah-eadf5?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Cable Rolls (single or multi-colored)](https://www.tokopedia.com/cncstorebandung/kabel-jumper-tunggal-awg30-untuk-breadboard-per-satu-roll-1731702447272724030?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[TOWERPRO MOTOR SERVO MG996R MG996](https://www.tokopedia.com/cncstorebandung/cnc-towerpro-motor-servo-mg996r-mg996-metal-gear-upgrade-mg995?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[TowerPro Motor Servo SG90 SG-90 9G](https://www.tokopedia.com/cncstorebandung/towerpro-motor-servo-sg90-sg-90-9g-servo-mini-180-untuk-arduino-robotik-diy-project-1731127914323150398?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Expansion Shield](https://www.tokopedia.com/cncstorebandung/cnc-io-expansion-shield-extension-board-for-arduino-nano-uno-30?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Jumper Cables 15CM](https://www.tokopedia.com/cncstorebandung/40pcs-kabel-jumper-cable-15cm-male-male-female-female-male-female-male-to-male-86a4b?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
-++[Jumper Cables 10CM](https://www.tokopedia.com/cncstorebandung/kabel-jumper-40pcs-10cm-male-to-female-female-to-female-male-to-male-dupont-1731762451083265598?extParam=src%3Dshop%26whid%3D15512&aff_unique_id=&channel=others&chain_key=)
+> Other stores I took a look at, but unless nothing is available on `CNC Bandung`, then I'll mostly refer to these: 
+-[Starelectric](https://www.tokopedia.com/starlectric/product)
+
+-[Solusiperabot](https://www.tokopedia.com/solusiperabot)
+
 
 ### Extra References
 

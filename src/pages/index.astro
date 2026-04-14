@@ -6,10 +6,17 @@ import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getRecentPosts } from '@/lib/data-utils'
+import { getAllPosts } from '@/lib/data-utils'
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils'
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
+const allPosts = await getAllPosts()
+
+// Option A: Specific posts by slug
+const featuredSlugs = ['daah-corpus', 'daah-ghibli', 'daah-zanzibar', 'future-punk-cla']
+const featuredPosts = allPosts.filter(post => featuredSlugs.includes(post.slug))
+
 ---
 
 <!-- Heading Section -->
@@ -50,6 +57,31 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
           </Link>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-2xl font-medium">Featured Projects</h2>
+    
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {
+        featuredPosts.map((post) => (
+          <li class="flex">
+            <BlogCard entry={post} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex justify-center">
+      <Link
+        href="/blog"
+        class={buttonVariants({ variant: 'ghost' }) + ' group'}
+      >
+        See all posts <span
+          class="ml-1.5 transition-transform group-hover:translate-x-1"
+          >&rarr;</span
+        >
+      </Link>
     </div>
   </section>
 </Layout>

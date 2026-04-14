@@ -14,8 +14,9 @@ const blog = await getRecentPosts(SITE.featuredPostCount)
 const allPosts = await getAllPosts()
 
 // Option A: Specific posts by slug
-const featuredSlugs = ['daah-corpus', 'daah-ghibli', 'daah-zanzibar', 'future-punk-cla']
-const featuredPosts = allPosts.filter(post => featuredSlugs.includes(post.slug))
+const featuredIds = ['daah-corpus', 'daah-corpus', 'daah-corpus', 'daah-corpus']
+
+const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
 
 ---
 

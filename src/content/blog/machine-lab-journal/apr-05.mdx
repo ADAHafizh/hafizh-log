@@ -61,7 +61,7 @@ Notes:
 Tower Pro --> Good brand 
 
 
-# Progress Update (12 Apr): Shopping Cart List 
+# Prog. Update (12 Apr): Shopping Cart List 
 
 For this week, my focus has been so much pivoted towards capstone that I almost forgot about this class. But, that being said, I spent quite some time researching two things: `a) approaching this Quadrupedal robot through supporting lesson materials` and `b) searching for the stores that could provide me with all the necessary ingredients`
 
@@ -138,11 +138,11 @@ Stuff to consider when building the contraption:
 - **On the shield, there is a way to power both the Arduino and the motors**: so you have to select it, either by soldering wires or something. IF I GET THIS ONE. 
 - Consider the battery pack 
 
-# Progress Update (18 Apr): Servo-ing Up Some Serious Attitude
+# Prog. Update (18 Apr): Servo-ing Up Some Serious Attitude
 
 As the items that were ordered after previous meeting arrived, I began to tinker with a bunch of them. Mainly for this session, I wanted to consult about a) soldering, and b) wiring findings and issues that I came across. *Building a great foundation on circuitry would benefit me a lot moving forward as I debug less on the wiring and more mechanical towards the walking machine in the future.* 
 
-## Servo
+## Servos
 
 For this prototype, I'm working with four servo motors which currently are working together under a single program. Later on, I'd have to think about how to make them perform individually for collective locomotion. 
 
@@ -169,7 +169,7 @@ For this prototype, I'm working with four servo motors which currently are worki
     <figcaption> Wipers vs. Jittery mess </figcaption>
 </figure>
 
-<Callout title=".../blog/machine-lab-journal/sketch_apr18a" variant="note">
+<Callout title=".../blog/machine-lab-journal/sketch_apr18a" variant="note" defaultOpen="false">
 In this session, there's a few parameters that I wanna check out, notably *power distribution, wiring issues, and motor angle measurement*. In the code, I programmed each servos to start at `position = 0`, which allowed to me see where they start, then have a set interval before moving back and forth. The code also uses no delay, rather relies on "internal clock" to ensure there's no lag. 
 
   ```c++ showLineNumbers=true
@@ -198,6 +198,24 @@ In this session, there's a few parameters that I wanna check out, notably *power
 
 In the beginning, because the movement interval of the gear was too fast (or too short in between), I could not see how far 180° was. But tuning it to run slower does the job, so great!
 </Callout>
+
+## Soldering-vaganza
+
+<div style="display: flex; justify-content: center; gap: 5px;"> 
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/FAmlnl5.png" alt="deck" style="width: 100%;"/>
+        <figcaption> Solder melts only on the orange-red part, tip is very cold  </figcaption>
+    </figure>
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/fZJTXy2.jpeg" alt="deck" style="width: 100%;"/>
+        <figcaption> Makeshift solder station </figcaption>
+    </figure>
+</div>
+
+### Discussion: Apr 18
+
+- I believe there's a few reasons as to why the motors are acting the way they are right now, and mainly power. These motors take up a lot of current, and having power only straight from the 5V isn't ideal. I already accounted for this with an extension shield that will be powered using AA batteries, but alas,
+- The 20dhs soldering is as I expected. 
 
 ### Extra References
 

@@ -135,7 +135,7 @@ I removed the gear-based motor because they are slightly on the expensive side o
 Stuff to consider when building the contraption:
 - When powering multiple servos, It has the risk of drawing to much current, and then voltage drops down, and then arduino shuts down. **A great way to reduce the risk is by only activating one servo at a time.** 
 - Another alternative is by **providing the power to the servo alternatively**, maybe we can use battery pack for the servo motors, and then power to arduino from USB. 
-- **On the shield, there is a way to power both the Arduino and the motors: so you have to select it, **either by soldering wires or something. IF I GET THIS ONE. 
+- **On the shield, there is a way to power both the Arduino and the motors**: so you have to select it, either by soldering wires or something. IF I GET THIS ONE. 
 - Consider the battery pack 
 
 # Progress Update (18 Apr): Servo-ing Up Some Serious Attitude
@@ -168,6 +168,36 @@ For this prototype, I'm working with four servo motors which currently are worki
     </video>
     <figcaption> Wipers vs. Jittery mess </figcaption>
 </figure>
+
+<Callout title=".../blog/machine-lab-journal/sketch_apr18a" variant="note">
+In this session, there's a few parameters that I wanna check out, notably *power distribution, wiring issues, and motor angle measurement*. In the code, I programmed each servos to start at `position = 0`, which allowed to me see where they start, then have a set interval before moving back and forth. The code also uses no delay, rather relies on "internal clock" to ensure there's no lag. 
+
+  ```c++ showLineNumbers=true
+  > [!Sketch_Apr18a]
+  
+    #include <Servo.h>
+    bool isMoving = false; 
+    .
+    .
+    .
+    void loop() {
+    // State management
+    // Check if we are still at the initial waiting period
+    if (!isMoving) {
+        if (currentMillis >= waitTime) {
+        isMoving = true;
+        }
+        return;
+        }
+    }
+    .
+    .
+    .
+    // Movement Logic
+  ```
+
+In the beginning, because the movement interval of the gear was too fast (or too short in between), I could not see how far 180° was. But tuning it to run slower does the job, so great!
+</Callout>
 
 ### Extra References
 

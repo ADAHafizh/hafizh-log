@@ -15,8 +15,6 @@ unsigned long lastMove = 0;
 const int interval = 30;  // Interval between timer 
 const unsigned long waitTime = 3000; // Interval at start 
 
-
-
 void setup() {
   servo1.attach(3);
   servo2.attach(5);

@@ -10,16 +10,16 @@ bool isMoving = false;
 Servo servo1, servo2, servo3, servo4;
 
 int pos = 0;
-int step = 10;            
+int step = 15;            
 unsigned long lastMove = 0; 
-const int interval = 30;  // Interval between timer 
+const int interval = 50;  // Interval between timer 
 const unsigned long waitTime = 3000; // Interval at start 
 
 void setup() {
-  servo1.attach(3);
+  //servo1.attach(3);
   servo2.attach(5);
-  servo3.attach(6);
-  servo4.attach(9);
+  //servo3.attach(8);
+  //servo4.attach(9);
 
   // Set initial position 
   servo1.write(0);

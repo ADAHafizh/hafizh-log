@@ -216,8 +216,24 @@ In the beginning, because the movement interval of the gear was too fast (or too
 
 - I believe there's a few reasons as to why the motors are acting the way they are right now, and mainly power. These motors take up a lot of current, and having power only straight from the 5V isn't ideal. I already accounted for this with an extension shield that will be powered using AA batteries, but alas,
 - The 20dhs soldering is as I expected. 
+- Strip wire and put them together and tape them preventing short circuit 
+- delay for three seconds in the setup 
+- Start swapping things to see what's wrong, see if the wires, arduino, or something of the sorts 
+- Move the jumper to the other side of the breadboard 
+
+Following the meeting I've done some things: 
+- I tried swapping the motor wires to the same side of the breadboard and they still seem to lag, jitter, unstable in their movements
+- I tested the motors individually, hoping if something is broken but no-- they all can move 180 deg properly alone
+- **However, I observed once two motors are programmed to run, then things start to move erratically. At one point, I thought it comes down to one motor, swapped it and it gave same results**
+- Swapping the USB cable to a different laptop port doesn't seem to help
+
+Though I do notice, sometimes it works if all four are moving until it starts behaving inconsistently again.
+In the code, I tried to reprogram it such that only one motor moves till it finishes moving 180 deg, then move the other motors (*Waterfall effect*). I noticed a pattern occuring sometimes when a motor finishes the action, there's this soft whirr and it tries to move again, while simultaneously the other motor is moving. Using delay also gives out the same results.
+
+> I've tried pinpointing the problem's root and I still seem to unable figure out what's causing it. I suspect it has something to do with the program signals being sent out perhaps?⛈️ 😢 
 
 ### Extra References
 
 - [Quadrupedalism](https://en.wikipedia.org/wiki/Quadrupedalism)
 - [Adafruit Servo Shield](https://learn.adafruit.com/adafruit-16-channel-pwm-slash-servo-shield/overview) » It uses different library to send code to the chip, and the chip can be different addresses. 
+- [Soldering not melting? Fix tips video](https://www.youtube.com/watch?v=cnV0vCQ9VI4)

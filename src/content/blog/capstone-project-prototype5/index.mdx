@@ -122,3 +122,20 @@ my TouchDesigner Controller module.
         <figcaption> Long-distance user testing in Yaakulya's space </figcaption>
     </figure>
 </div>
+
+# After Thoughts 
+
+Moving from a controlled studio to a remote WebSocket environment introduced three "invisible" enemies that nearly broke the immersion of Senspace:
+
+- **The Latency Trap: **Request Timeouts (RTO) in the WebSocket stream created a lag between human action and visual reaction. In a restorative space, even a split-second delay shatters the user’s sense of agency.
+
+- **The Jitter Problem: **Raw data is messy. Without aggressive filtering, sensor noise translated into "sickly" visual jitters. I learned that for art to feel "natural," the system must prioritize visual stability over raw data responsiveness.
+
+- **Asymmetric Performance: **What looked smooth on my host machine lagged for the participants. Handshaking over the internet proved that bandwidth can be the ultimate gatekeeper of artistic fluency.
+
+<div style={{ textAlign: 'center' }}>
+
+> "Future iterations require more aggressive filtering. To facilitate rest, the technology must be invisible—even when the network is unstable. The most powerful thing we can design is a space that allows the mind to finally think of `less.`"
+
+</div>
+

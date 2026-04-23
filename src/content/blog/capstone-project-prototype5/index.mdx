@@ -29,7 +29,7 @@ Achieving this two tasks requires me to adjust many things within the backbone.
 
 # Controller Remapped
 
-During the physical prototyping, the visual state was controlled using manual keyboard presses. But this time, the transition from `Manual` to `Automated` required more than just changing the trigger source. I had to move to a *verifying* script. The new logic validates the data, checks for the existence of assets, and handles the `A/B` state flip internally, ensuring a seamless experience even with jittery sensor data.
+During the physical prototyping, the visual state was controlled using manual keyboard presses. But this time, the transition from `Manual` to `Automated` required more than just changing the trigger source. I had to move to a *verifying* script. The new logic validates the data (`activeLayers`), checks for the existence of assets, and handles the `A/B` state flip internally, ensuring a seamless experience even with jittery sensor data.
 
 <div style="display: flex; justify-content: center; gap: 5px;">
     <figure style="text-align: center;">
@@ -47,14 +47,54 @@ Fundamentally, the difference is as follows:
 ## Major Improvements
 
 **Error Prevention**
-
 In the Old Code, if the sensor outputted a 4 but I only had visuals v_0 through v_3, the script would throw a Python error and stop working. The New Code handles this:
 
-```Python
+```python
 if op(f'/Visuals/v_{target_v}') is None:
     debug(f"Warning: Visual v_{target_v} not found...")
     return
 ```
 
+**Automated State Swapping**
+The Old Code required me to press a key to flip the state. The New Code detects a value change from the sensor and flips the "A/B" state automatically, making it hands-free:
+
+```python
+new_state = 1 if curr_param.par.value0 == 0 else 0
+curr_param.par.value0 = new_state
+```
+
 # Remapping Jitters
+
+Apart from revamping the controller architecture, I also tweaked and adjusted the `jitter` as the main parameter to control the Voronoi base visual "waviness." This is achieved by inputting the data from the WebSocket parser into each visual state apart from Calm State because it has fixed parameter. 
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/MuOSUIU.png" alt="WS Test" style="width: 100%;"/>
+        <figcaption> `Jitter` as the input to three visual state </figcaption>
+    </figure>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <video width="100%" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/iMpbJb3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </source>
+        </video>
+        <figcaption> Result, operated manually using slider when no WebSocket is connected </figcaption>
+    </figure>
+</div>
+
+Through in-house testing with Yaakulya before user testing, I figured the jitter data either jumped closer to 1 when very chaotic, or close to 0 when calm. Thus, as the main parameter that controls how much cells are visible in the base visual, I decided to have it mapped between 0-0.75 and > 0.75:
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <video width="100%" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/Nh21rb9.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </source>
+        </video>
+        <figcaption> Huge difference between the jitters </figcaption>
+    </figure>
+</div>
 

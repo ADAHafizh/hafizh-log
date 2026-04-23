@@ -1,0 +1,60 @@
+---
+title: 'Capstone Project | Prototype 8,9 - RELEASE'
+description: 'In the digital, user testing, and final thoughts'
+date: 2026-04-10
+tags: ['capstone']
+image: './bg-capstone.png'
+authors: ['adahafizh']
+---
+
+import { YouTube } from 'astro-embed';
+import Callout from '@/components/Callout.astro'
+import { Icon } from 'astro-icon/components'
+
+<Callout title="About this post" variant="warning">
+This post contains a very long reflective journey from the previous post all the way to spring break, during which, many chaotic events happened. As such, while I could've referred to IM Capstone weekly schedule, a lot of things became **fluid.**
+
+> **Thus this post becomes the gap that fills before all things become remote learning.**
+
+</Callout>
+
+# Goals
+
+As the project transitioned to an online phase, I decided to re-check all the systems and features to make sure they're running properly for the user testing. There are two things that I have to check for the testing to run smoothly:
+
+- **Ensuring the WebSocket parser works**, and identify any upcoming errors 
+- **Custom controller detects the current space state**, and translate it to the correct visual
+
+Achieving this two tasks requires me to adjust many things within the backbone. 
+
+# Controller Remapped
+
+During the physical prototyping, the visual state was controlled using manual keyboard presses. But this time, the transition from `Manual` to `Automated` required more than just changing the trigger source. I had to move to a *verifying* script. The new logic validates the data, checks for the existence of assets, and handles the `A/B` state flip internally, ensuring a seamless experience even with jittery sensor data.
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/vgGRfj8.png" alt="WS Test" style="width: 100%;"/>
+        <figcaption> Operation in TouchDesigner</figcaption>
+    </figure>
+</div>
+
+Fundamentally, the difference is as follows:
+
+- **Old Code** was built for manual keyboard input. It relied on a "Fan CHOP" where every button press was a unique event. It didn't care if the visual path actually existed or if the number was a clean integer.
+
+- **New Code** is built for sensor automation. It handles "dirty" data by rounding values, verifies paths exist before switching to avoid crashes, and includes a debugging layer to track state changes in the Textport.
+
+## Major Improvements
+
+**Error Prevention**
+
+In the Old Code, if the sensor outputted a 4 but I only had visuals v_0 through v_3, the script would throw a Python error and stop working. The New Code handles this:
+
+```Python
+if op(f'/Visuals/v_{target_v}') is None:
+    debug(f"Warning: Visual v_{target_v} not found...")
+    return
+```
+
+# Remapping Jitters
+

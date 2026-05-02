@@ -1,28 +1,28 @@
 #include <Servo.h>
 
 // Declare servos
-Servo servos[4]; 
-int servoPins[] = {3, 5, 8, 9};
+Servo servos[4];
+int servoPins[] = { 3, 5, 8, 9 };
 
-bool isMoving = false; 
+bool isMoving = false;
 int pos = 0;
-int step = 10;            
-int currentServo = 0;    
+int step = 10;
+int currentServo = 0;
 
-unsigned long lastMove = 0; 
-const int interval = 50;  
-const unsigned long waitTime = 3000; 
+unsigned long lastMove = 0;
+const int interval = 50;
+const unsigned long waitTime = 3000;
 
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(9600);
   Serial.println("System Initializing...");
 
   for (int i = 0; i < 4; i++) {
     servos[i].attach(servoPins[i]);
-    servos[i].write(0); 
+    servos[i].write(0);
   }
-  
-  Serial.println("Waiting for startup delay...");
+
+  Serial.println("Waiting for startup delay...");tink
 }
 
 void loop() {
@@ -41,13 +41,13 @@ void loop() {
   if (currentMillis - lastMove >= interval) {
     lastMove = currentMillis;
 
-    pos += step; 
+    pos += step;
     servos[currentServo].write(pos);
 
     if (pos >= 180 || pos <= 0) {
-      currentServo++; 
-      pos = 0;        
-      
+      currentServo++;
+      pos = 0;
+
       if (currentServo >= 4) {
         currentServo = 0;
       }

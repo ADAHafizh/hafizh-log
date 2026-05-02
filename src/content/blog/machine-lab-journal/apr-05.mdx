@@ -232,6 +232,75 @@ In the code, I tried to reprogram it such that only one motor moves till it fini
 
 > I've tried pinpointing the problem's root and I still seem to unable figure out what's causing it. I suspect it has something to do with the program signals being sent out perhaps?⛈️ 😢 
 
+# Prog. Update (25 Apr): Fixing the pesky movement
+
+After some tinkering and thoughts behind the machine, I've decided to let go of moving all four servos together and instead move them one-by-one from the program. The way that I did this was by iterating the available motors inside a list, and then writing to them. I've had to change some parts of the code, but it builds and borrows upon the previous code, which is writing to motors without any delay().
+
+```c++ title="sketch_apr25a.ino" showLineNumbers=true
+#include <Servo.h>
+
+// Declare servos
+Servo servos[4];
+int servoPins[] = { 3, 5, 8, 9 };
+
+bool isMoving = false;
+int pos = 0;
+int step = 10;
+int currentServo = 0;
+
+unsigned long lastMove = 0;
+const int interval = 50;
+const unsigned long waitTime = 3000;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("System Initializing...");
+
+  for (int i = 0; i < 4; i++) {
+    servos[i].attach(servoPins[i]);
+    servos[i].write(0);
+  }
+
+  Serial.println("Waiting for startup delay...");tink
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+  if (!isMoving) {
+    if (currentMillis >= waitTime) {
+      isMoving = true;
+      Serial.println("Movement Started!");
+      Serial.print("Moving Servo Index: ");
+      Serial.println(currentServo);
+    }
+    return;
+  }
+
+  if (currentMillis - lastMove >= interval) {
+    lastMove = currentMillis;
+
+    pos += step;
+    servos[currentServo].write(pos);
+
+    if (pos >= 180 || pos <= 0) {
+      currentServo++;
+      pos = 0;
+
+      if (currentServo >= 4) {
+        currentServo = 0;
+      }
+
+      // Debug output to track the sequence
+      Serial.print("Switching to Servo Index: ");
+      Serial.println(currentServo);
+    }
+  }
+
+  // CODE CONTENT FOR OTHER STUFF HERE!!!
+}
+```
+
 ### Extra References
 
 - [Quadrupedalism](https://en.wikipedia.org/wiki/Quadrupedalism)

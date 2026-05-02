@@ -227,7 +227,7 @@ Following the meeting I've done some things:
 - **However, I observed once two motors are programmed to run, then things start to move erratically. At one point, I thought it comes down to one motor, swapped it and it gave same results**
 - Swapping the USB cable to a different laptop port doesn't seem to help
 
-Though I do notice, sometimes it works if all four are moving until it starts behaving inconsistently again.
+Though I do notice, sometimes it works if all four are moving until it starts behaving inconsistently again. 
 In the code, I tried to reprogram it such that only one motor moves till it finishes moving 180 deg, then move the other motors (*Waterfall effect*). I noticed a pattern occuring sometimes when a motor finishes the action, there's this soft whirr and it tries to move again, while simultaneously the other motor is moving. Using delay also gives out the same results.
 
 > I've tried pinpointing the problem's root and I still seem to unable figure out what's causing it. I suspect it has something to do with the program signals being sent out perhaps?⛈️ 😢 
@@ -236,7 +236,7 @@ In the code, I tried to reprogram it such that only one motor moves till it fini
 
 After some tinkering and thoughts behind the machine, I've decided to let go of moving all four servos together and instead move them one-by-one from the program. The way that I did this was by iterating the available motors inside a list, and then writing to them. I've had to change some parts of the code, but it builds and borrows upon the previous code, which is writing to motors without any delay().
 
-```c++ title=".../blog/machine-lab-journal/sketch_apr18a" showLineNumbers=true
+```c++ title=".../blog/machine-lab-journal/sketch_apr18a" showLineNumbers=true {3-5, 20-23, 44-45}
 #include <Servo.h>
 
 // Declare servos
@@ -300,6 +300,17 @@ void loop() {
   // CODE CONTENT FOR OTHER STUFF HERE!!!
 }
 ```
+
+What this code does is simple, instead of writing immediately to all servos, it checks which servo is currently active before moving the next one, indicated by the new variable `currentServo`. Then, once all servos have been turned, the counter turns back to 0. Here's the showcase in Tinkercad because I'm away from home for now. 
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1000px; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <video style="width: 100%; aspect-ratio: 16/9; object-fit: cover;" autoplay loop muted playsinline>
+            <source src="https://i.imgur.com/MmeF2ef.mp4" type="video/mp4" />
+        </video>
+        <figcaption> 🎉 Flickering persists, but the system works! 🎉 </figcaption>
+    </figure>
+</div>
 
 ### Extra References
 

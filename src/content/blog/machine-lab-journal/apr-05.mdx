@@ -236,7 +236,7 @@ In the code, I tried to reprogram it such that only one motor moves till it fini
 
 After some tinkering and thoughts behind the machine, I've decided to let go of moving all four servos together and instead move them one-by-one from the program. The way that I did this was by iterating the available motors inside a list, and then writing to them. I've had to change some parts of the code, but it builds and borrows upon the previous code, which is writing to motors without any delay().
 
-```c++ title="sketch_apr25a.ino" showLineNumbers=true
+```c++ title=".../blog/machine-lab-journal/sketch_apr18a" showLineNumbers=true
 #include <Servo.h>
 
 // Declare servos

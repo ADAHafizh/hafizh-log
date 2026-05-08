@@ -110,3 +110,19 @@
     @apply border-border outline-ring/50 tracking-tight;
   }
 }
+
+@layer utilities {
+  .text-gradient {
+    background-image: linear-gradient(90deg, #ea580c 0%, #000000 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-reverse {
+    background-image: linear-gradient(90deg, #000000 0%, #ea580c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}

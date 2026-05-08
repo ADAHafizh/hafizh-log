@@ -70,6 +70,27 @@
 }
 
 @layer base {
+  html,
+  body {
+    font-family: var(--font-sans);
+  }
+
+  code,
+  pre,
+  kbd,
+  samp,
+  tt {
+    font-family: var(--font-mono);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
   *,
   ::after,
   ::before,

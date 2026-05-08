@@ -7,8 +7,8 @@ export const SITE: Site = {
   href: 'https://hafizh-log.vercel.app/',
   author: 'hafizh',
   locale: 'en-US',
-  featuredPostCount: 2,
-  postsPerPage: 3,
+  featuredPostCount: 3,
+  postsPerPage: 5,
 }
 
 export const NAV_LINKS: SocialLink[] = [
@@ -27,6 +27,10 @@ export const NAV_LINKS: SocialLink[] = [
     {
     href: '/tags',
     label: 'tags',
+  },
+  {
+    href: '/authors',
+    label: 'authors',
   },
 ]
 

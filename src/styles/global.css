@@ -1,10 +1,13 @@
 @import 'tailwindcss';
 
+/* Plus Jakarta Sans - google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme inline {
   --font-sans:
-    Geist, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Plus Jakarta Sans', Geist, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-mono:
     Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -35,7 +38,7 @@
   --color-ring: var(--ring);
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Geist';
   src: url('/fonts/GeistVF.woff2') format('woff2-variations');
   font-weight: 100 900;
@@ -49,7 +52,7 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 :root {
   --background: oklch(1 0 0);

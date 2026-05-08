@@ -16,21 +16,21 @@ export const NAV_LINKS: SocialLink[] = [
     href: '/blog',
     label: 'posts',
   },
-  {
-    href: '/tags/capstone',
-    label: 'capstone',
-  },
-  {
-    href: '/tags/machine-lab',
-    label: 'machine lab',
-  },
-    {
-    href: '/tags',
-    label: 'tags',
-  },
+  // {
+  //   href: '/tags/capstone',
+  //   label: 'capstone',
+  // },
+  // {
+  //   href: '/tags/machine-lab',
+  //   label: 'machine lab',
+  // },
   {
     href: '/authors',
     label: 'authors',
+  },
+  {
+    href: '/tags',
+    label: 'tags',
   },
 ]
 

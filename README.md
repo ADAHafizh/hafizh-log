@@ -1,4 +1,4 @@
-# Blog for IM Class 
+# Started as class log became intimate
 
-Active: Machine Lab, Capstone Seminar & Project
-Archive: DAAH, UIM, Future Punk
+Active: -
+Archive: DAAH, UIM, Future Punk, Machine Lab, Capstone Seminar & Project

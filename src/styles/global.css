@@ -9,10 +9,10 @@
 
 @theme inline {
   --font-sans:
-    'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-mono:
-    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
 
   --color-background: var(--background);
@@ -40,7 +40,7 @@
   --color-ring: var(--ring);
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Plus Jakarta Sans';
   src: url('/public/fonts/PlusJakartaSans.ttf');
   font-weight: 200 800;
@@ -54,7 +54,7 @@
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 :root {
   --background: oklch(1 0 0);

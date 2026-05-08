@@ -9,7 +9,7 @@ import { getRecentPosts } from '@/lib/data-utils'
 import { getAllPosts } from '@/lib/data-utils'
 import { Button } from "@/components/ui/button"
 import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
+import { Separator } from "@/src/components/hybrid-astro-ui/separator"
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 const allPosts = await getAllPosts()
@@ -49,10 +49,9 @@ const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
           </p>
         </p>
       </div>
-      <Separator 
-        orientation="horizontal" 
-        className="h-[1px] w-[65%] mx-auto bg-border" 
-      />
+
+      <Separator variant="dotted" maxWidth="md" className="mx-auto my-6" />
+      
       <div class="flex flex-col space-y-1.5 p-6">
         <div class="flex flex-wrap items-center gap-2 md:flex-row">
           <Link href="/tags/capstone" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>

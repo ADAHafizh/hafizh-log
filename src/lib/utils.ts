@@ -1,37 +1,44 @@
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from "tailwind-merge";
+import { clsx, type ClassValue } from "clsx";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+export function cls(...args: ClassValue[]) {
+    return twMerge(clsx(args))
 }
 
-export function formatDate(date: Date) {
-  return Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(date)
+import type { PaginateFunction } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+import type { collections } from '@/src/content/config';
+type CollectionName = keyof typeof collections;
+
+interface PaginationOptions {
+    pageSize?: number;
+    sortByFn?: ((a: CollectionEntry<CollectionName>, b: CollectionEntry<CollectionName>) => number);
+    filterFn?: (post: CollectionEntry<CollectionName>) => boolean;
+    collection: CollectionName
 }
 
-export function calculateWordCountFromHtml(
-  html: string | null | undefined,
-): number {
-  if (!html) return 0
-  const textOnly = html.replace(/<[^>]+>/g, '')
-  return textOnly.split(/\s+/).filter(Boolean).length
+
+export function createCollectionPagination(options: PaginationOptions) {
+    const {
+        pageSize = 10,
+        sortByFn ,
+        filterFn,
+        collection
+    } = options;
+
+    return async ({ paginate }: { paginate: PaginateFunction }) => {
+        let items = await getCollection(collection);
+
+        if (filterFn) {
+            items = items.filter(filterFn);
+        }
+
+        if (sortByFn) {
+            items = items.sort(sortByFn);
+        } 
+
+        return paginate(items, { pageSize });
+    };
 }
 
-export function readingTime(wordCount: number): string {
-  const readingTimeMinutes = Math.max(1, Math.round(wordCount / 200))
-  return `${readingTimeMinutes} min read`
-}
-
-export function getHeadingMargin(depth: number): string {
-  const margins: Record<number, string> = {
-    3: 'ml-4',
-    4: 'ml-8',
-    5: 'ml-12',
-    6: 'ml-16',
-  }
-  return margins[depth] || ''
-}

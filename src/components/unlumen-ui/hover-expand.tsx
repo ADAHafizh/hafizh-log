@@ -26,7 +26,8 @@ export function HoverExpand({
   expandedHeight = 320,
   className,
 }: HoverExpandProps) {
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  // THE FIX: Initialize state with 0 to keep the first item expanded by default
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(0);
 
   return (
     <div className={cn("flex flex-col w-full", className)}>
@@ -40,7 +41,6 @@ export function HoverExpand({
           <React.Fragment key={i}>
             <motion.div
               className="relative w-full overflow-hidden cursor-pointer group"
-              // IMPLEMENTED: Blogpost navigation
               onClick={() => item.href && (window.location.href = item.href)}
               animate={{
                 height: isHovered ? expandedHeight : collapsedHeight,
@@ -51,7 +51,8 @@ export function HoverExpand({
                 opacity: { duration: 0.22, ease: "easeOut" },
               }}
               onHoverStart={() => setHoveredIndex(i)}
-              onHoverEnd={() => setHoveredIndex(null)}
+              // REMOVED: setHoveredIndex(null) onHoverEnd 
+              // This keeps the last-hovered item expanded even when the mouse leaves the area
             >
               {/* Background Image Layer */}
               <motion.div
@@ -79,7 +80,6 @@ export function HoverExpand({
                 <div className="flex w-full items-baseline justify-between gap-4">
                   
                   <div className="flex items-baseline gap-3 min-w-0">
-                    {/* 1. NUMBER */}
                     <motion.span
                       className="text-xs tabular-nums shrink-0 opacity-40"
                       animate={{
@@ -89,7 +89,6 @@ export function HoverExpand({
                       {String(i + 1).padStart(2, "0")}
                     </motion.span>
 
-                    {/* 2. LABEL (No truncation here) */}
                     <motion.span
                       className="font-semibold tracking-tight whitespace-nowrap"
                       style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)" }}
@@ -100,7 +99,6 @@ export function HoverExpand({
                       {item.label}
                     </motion.span>
 
-                    {/* 3. DESCRIPTION (Fades in on hover) */}
                     {item.description && (
                       <motion.span
                         className="text-sm text-white/70 truncate hidden sm:block"
@@ -116,7 +114,6 @@ export function HoverExpand({
                     )}
                   </div>
 
-                  {/* 4. SUBLABEL */}
                   {item.sublabel && (
                     <motion.span
                       className="text-xs tracking-widest uppercase shrink-0"

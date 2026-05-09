@@ -25,7 +25,7 @@ const items = [
     label: "Senspace",
     sublabel: "Capstone",
     description: "An interactive immersive experience where generative visuals and soundscapes blend the boundaries of physical space, inviting you into stillness.",
-    image: "/public/static/bgSenspace.png",
+    image: "/static/bgSenspace.png",
   },
 ]
 
@@ -88,7 +88,7 @@ const items = [
         a piece of planned work or an activity that is finished over a period of time and intended to achieve a particular purpose 
       </p>
       
-      <HoverExpand items={items} />
+      <HoverExpand client:load items={items} />
 
       </div>
       

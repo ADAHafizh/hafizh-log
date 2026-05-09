@@ -125,4 +125,9 @@
     background-clip: text;
     color: transparent;
   }
+
+  .separatorGradient {
+    background: radial-gradient(ellipse at center, var(--border) 0%, transparent 55%);
+  }
+
 }

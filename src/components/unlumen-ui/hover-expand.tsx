@@ -10,7 +10,6 @@ export interface HoverExpandItem {
   image: string;
   imageAlt?: string;
   description?: string;
-  /** The URL path for the blog post */
   href?: string; 
 }
 
@@ -23,7 +22,7 @@ export interface HoverExpandProps {
 
 export function HoverExpand({
   items,
-  collapsedHeight = 80, // Slightly increased to prevent text cutoff
+  collapsedHeight = 68,
   expandedHeight = 320,
   className,
 }: HoverExpandProps) {
@@ -41,7 +40,7 @@ export function HoverExpand({
           <React.Fragment key={i}>
             <motion.div
               className="relative w-full overflow-hidden cursor-pointer group"
-              // IMPLEMENTED: Navigation on click
+              // IMPLEMENTED: Blogpost navigation
               onClick={() => item.href && (window.location.href = item.href)}
               animate={{
                 height: isHovered ? expandedHeight : collapsedHeight,
@@ -54,7 +53,7 @@ export function HoverExpand({
               onHoverStart={() => setHoveredIndex(i)}
               onHoverEnd={() => setHoveredIndex(null)}
             >
-              {/* Background Image & Gradient */}
+              {/* Background Image Layer */}
               <motion.div
                 className="absolute inset-0 w-full h-full"
                 initial={false}
@@ -72,58 +71,67 @@ export function HoverExpand({
                   alt={item.imageAlt ?? ""}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </motion.div>
 
-              {/* Text Layout */}
-              <div className="absolute inset-0 flex flex-col justify-end px-6 pb-6">
-                <div className="flex flex-col gap-1">
+              {/* Layout: Number - Label - Description - Sublabel */}
+              <div className="absolute inset-0 flex items-end px-5 pb-4">
+                <div className="flex w-full items-baseline justify-between gap-4">
                   
-                  {/* 1. SUBLABEL (The "Capstone" tag) */}
+                  <div className="flex items-baseline gap-3 min-w-0">
+                    {/* 1. NUMBER */}
+                    <motion.span
+                      className="text-xs tabular-nums shrink-0 opacity-40"
+                      animate={{
+                        color: isHovered ? "#ffffff" : "currentColor",
+                      }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </motion.span>
+
+                    {/* 2. LABEL (No truncation here) */}
+                    <motion.span
+                      className="font-semibold tracking-tight whitespace-nowrap"
+                      style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)" }}
+                      animate={{
+                        color: isHovered ? "#ffffff" : "currentColor",
+                      }}
+                    >
+                      {item.label}
+                    </motion.span>
+
+                    {/* 3. DESCRIPTION (Fades in on hover) */}
+                    {item.description && (
+                      <motion.span
+                        className="text-sm text-white/70 truncate hidden sm:block"
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{
+                          opacity: isHovered ? 1 : 0,
+                          x: isHovered ? 0 : -8,
+                        }}
+                        transition={{ duration: 0.3, delay: isHovered ? 0.1 : 0 }}
+                      >
+                        — {item.description}
+                      </motion.span>
+                    )}
+                  </div>
+
+                  {/* 4. SUBLABEL */}
                   {item.sublabel && (
                     <motion.span
-                      className="text-[10px] tracking-[0.2em] uppercase font-bold"
+                      className="text-xs tracking-widest uppercase shrink-0"
                       animate={{
-                        color: isHovered ? "#ea580c" : "currentColor", 
-                        opacity: isHovered ? 1 : 0.6,
+                        color: isHovered ? "rgba(255,255,255,0.7)" : "currentColor",
+                        opacity: isHovered ? 1 : 0.45,
                       }}
                     >
                       {item.sublabel}
                     </motion.span>
                   )}
-
-                  {/* 2. LABEL (NO TRUNCATION) */}
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs tabular-nums opacity-40 text-zinc-500">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <motion.h4
-                      // Removed 'truncate', added 'text-zinc-200' for dark mode visibility by default
-                      className="font-bold tracking-tight text-zinc-200"
-                      style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
-                      animate={{
-                        color: isHovered ? "#ffffff" : "#e4e4e7",
-                      }}
-                    >
-                      {item.label}
-                    </motion.h4>
-                  </div>
-
-                  {/* 3. DESCRIPTION (Still Truncated) */}
-                  <motion.p
-                    className="text-sm text-zinc-300 max-w-[90%] leading-relaxed line-clamp-2"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{
-                      opacity: isHovered ? 1 : 0,
-                      height: isHovered ? "auto" : 0,
-                      marginTop: isHovered ? 8 : 0,
-                    }}
-                  >
-                    {item.description}
-                  </motion.p>
                 </div>
               </div>
             </motion.div>
+
             <div className="w-full border-t border-current opacity-15" />
           </React.Fragment>
         );

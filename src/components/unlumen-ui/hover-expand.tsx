@@ -26,11 +26,15 @@ export function HoverExpand({
   expandedHeight = 320,
   className,
 }: HoverExpandProps) {
-  // THE FIX: Initialize state with 0 to keep the first item expanded by default
+  // Initialize with 0 so the first item is open on load
   const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(0);
 
   return (
-    <div className={cn("flex flex-col w-full", className)}>
+    <div 
+      className={cn("flex flex-col w-full", className)}
+      // NEW: When the mouse leaves the entire component area, collapse everything
+      onMouseLeave={() => setHoveredIndex(null)}
+    >
       <div className="w-full border-t border-current opacity-15" />
 
       {items.map((item, i) => {
@@ -51,8 +55,6 @@ export function HoverExpand({
                 opacity: { duration: 0.22, ease: "easeOut" },
               }}
               onHoverStart={() => setHoveredIndex(i)}
-              // REMOVED: setHoveredIndex(null) onHoverEnd 
-              // This keeps the last-hovered item expanded even when the mouse leaves the area
             >
               {/* Background Image Layer */}
               <motion.div

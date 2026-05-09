@@ -27,6 +27,7 @@ const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
   <section>
     <div class="rounded-lg border">
       <div class="flex flex-col space-y-1.5 p-6">
+        <!-- Log -->
         <h3 class="text-3xl leading-none font-medium flex items-center gap-x-1">
           <span>l</span>
           <lord-icon
@@ -38,7 +39,6 @@ const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
             colors="primary:#ea580c,secondary:#000000" 
           >
           </lord-icon>
-          
           <span>g</span>
         </h3>
         
@@ -53,7 +53,29 @@ const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
       <div class="w-full flex justify-center py-2">
         <div class="h-[1px] w-[65%] bg-border separatorGradient"></div>
       </div>
+      
+      <h3 class="text-3xl leading-none font-medium text-gradient">
+        <span>  
+        <lord-icon
+            src="/animations/project-stack.json"
+            trigger="loop"
+            stroke="bold"
+            state="hover-pinch"
+            class="w-[1.2em] h-[1.2em]"
+            colors="primary:#000000,secondary:#ea580c" 
+          >
+          </lord-icon>
+        </span>
+        pro•ject
+      </h3>
+      <p class="text-muted-foreground text-sm">
+        /ˈprɑː.dʒekt/ &bull; <span class="font-medium">noun</span>
+      </p>
+      <p class="mt-0">
+        a piece of planned work or an activity that is finished over a period of time and intended to achieve a particular purpose 
+      </p>
 
+      <!-- Class Navigations -->
       <div class="flex flex-col space-y-1.5 p-6">
         <div class="flex flex-wrap items-center gap-2 md:flex-row">
           <Link href="/tags/capstone" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>

@@ -32,7 +32,7 @@ export function HoverExpand({
   return (
     <div 
       className={cn("flex flex-col w-full", className)}
-      // NEW: When the mouse leaves the entire component area, collapse everything
+      // When the mouse leaves the entire component area, collapse everything
       onMouseLeave={() => setHoveredIndex(null)}
     >
       <div className="w-full border-t border-current opacity-15" />
@@ -41,11 +41,19 @@ export function HoverExpand({
         const isHovered = hoveredIndex === i;
         const isOtherHovered = hoveredIndex !== null && !isHovered;
 
+        // DYNAMIC TAG: Use anchor <a> for links, <div> for non-links
+        const MotionComponent = item.href ? motion.a : motion.div;
+
         return (
           <React.Fragment key={i}>
-            <motion.div
-              className="relative w-full overflow-hidden cursor-pointer group"
-              onClick={() => item.href && (window.location.href = item.href)}
+            <MotionComponent
+              className="relative w-full overflow-hidden cursor-pointer group block"
+              // Standard anchor attributes added dynamically
+              {...(item.href ? {
+                href: item.href,
+                target: item.href.startsWith("http") ? "_blank" : undefined,
+                rel: item.href.startsWith("http") ? "noopener noreferrer" : undefined,
+              } : {})}
               animate={{
                 height: isHovered ? expandedHeight : collapsedHeight,
                 opacity: isOtherHovered ? 0.38 : 1,
@@ -129,7 +137,7 @@ export function HoverExpand({
                   )}
                 </div>
               </div>
-            </motion.div>
+            </MotionComponent>
 
             <div className="w-full border-t border-current opacity-15" />
           </React.Fragment>

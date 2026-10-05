@@ -1,14 +1,11 @@
 ---
 import BentoCard from '@/components/BentoCard.astro'
-import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
-import { buttonVariants } from '@/components/ui/button'
 import { Highlighter } from '@/components/ui/highlighter'
 import { HoverExpand } from '@/components/unlumen-ui/hover-expand'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { getAllPosts, getRecentPosts } from '@/lib/data-utils'
-import { cn } from '@/lib/utils'
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 
@@ -76,7 +73,6 @@ const projects = [
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
-
   <section>
     <div class="rounded-lg border">
       <div class="flex flex-col space-y-1.5 p-6">
@@ -171,88 +167,16 @@ const projects = [
           </div>
         </section>
 
-        <!-- Class Navigations -->
-        <div class="flex flex-col space-y-1.5 p-6">
-          <div class="flex flex-wrap items-center gap-2 md:flex-row">
-            <Link
-              href="/tags/capstone"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > Capstone
-            </Link>
-            <Link
-              href="/tags/machine-lab"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > Machine Lab
-            </Link>
-            <Link
-              href="/tags/bodyarchive"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > The Body Archive
-            </Link>
-            <Link
-              href="/tags/digital-archive"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > Digital Archive & Art Humanities
-            </Link>
-            <Link
-              href="/tags/future-punk"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > Future Punk
-            </Link>
-            <Link
-              href="/tags/understanding-im"
-              class={cn(
-                buttonVariants({ variant: 'outline' }),
-                'flex gap-x-1.5 group',
-              )}
-            >
-              <span class="transition-transform group-hover:-translate-x-1"
-                >&#9675;</span
-              > Understanding IM
-            </Link>
-          </div>
-        </div>
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+        <style>
+          /* Custom nudge to make the cube sit perfectly on the text baseline */
+          lord-icon {
+            display: inline-block;
+            vertical-align: -0.2em; /* This moves it down slightly to match the 'l' and 'g' */
+          }
+        </style>
       </div>
     </div>
   </section>
-
-  <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-  <style>
-    /* Custom nudge to make the cube sit perfectly on the text baseline */
-    lord-icon {
-      display: inline-block;
-      vertical-align: -0.2em; /* This moves it down slightly to match the 'l' and 'g' */
-    }
-  </style>
 </Layout>

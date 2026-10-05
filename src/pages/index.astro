@@ -1,18 +1,14 @@
 ---
-import BlogCard from '@/components/BlogCard.astro'
+import BentoCard from '@/components/BentoCard.astro'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
 import { buttonVariants } from '@/components/ui/button'
+import { Highlighter } from '@/components/ui/highlighter'
+import { HoverExpand } from '@/components/unlumen-ui/hover-expand'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
-import { getRecentPosts } from '@/lib/data-utils'
-import { getAllPosts } from '@/lib/data-utils'
-import { Button } from "@/components/ui/button"
+import { getAllPosts, getRecentPosts } from '@/lib/data-utils'
 import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
-import { HoverExpand } from "@/components/unlumen-ui/hover-expand"
-import { Highlighter } from "@/components/ui/highlighter"
-import BentoCard from '@/components/BentoCard.astro'
 
 const blog = await getRecentPosts(SITE.featuredPostCount)
 
@@ -20,68 +16,105 @@ const allPosts = await getAllPosts()
 
 const featuredIds = ['daah-corpus', 'daah-zanzibar']
 
-const featuredPosts = allPosts.filter(post => featuredIds.includes(post.id))
+const featuredPosts = allPosts.filter((post) => featuredIds.includes(post.id))
 
 const items = [
   {
-    label: "Senspace",
-    sublabel: "Capstone",
-    description: "A generative interactive installation, blending physical & digital.",
-    image: "/static/bgSenspace.png",
-    href: "https://senspace.info/",
+    label: 'Senspace',
+    sublabel: 'Capstone',
+    description:
+      'A generative interactive installation, blending physical & digital.',
+    image: '/static/bgSenspace.png',
+    href: '/projects/senspace',
   },
   {
-    label: "Team Magma",
-    sublabel: "VBP",
-    description: "Neon-lit virtual body rock concert in a hot realm.",
-    image: "/static/bgTeamMagma.jpg",
+    label: 'Team Magma',
+    sublabel: 'VBP',
+    description: 'Neon-lit virtual body rock concert in a hot realm.',
+    image: '/static/bgTeamMagma.jpg',
+    href: '/projects/team-magma',
   },
   {
-    label: "Wayfinding",
-    sublabel: "Al-Sadeem",
-    description: "Welcoming and guiding users using spacemaking.",
-    image: "/static/bgAlSadeem.jpg",
+    label: 'Wayfinding',
+    sublabel: 'Al-Sadeem',
+    description: 'Welcoming and guiding users using spacemaking.',
+    image: '/static/bgAlSadeem.jpg',
+    href: '/projects/wayfinding',
   },
 ]
 
 const projects = [
   // ROW 1: 2 + 1 = 3 columns
-  { title: "Senspace", image: "/static/1200x630.png", href: "/blog/1", span: "md:col-span-2" },
-  { title: "Lab", image: "/static/1200x630.png", href: "/blog/2", span: "md:col-span-1" },
+  {
+    title: 'Senspace',
+    image: '/static/1200x630.png',
+    href: '/blog/1',
+    span: 'md:col-span-2',
+  },
+  {
+    title: 'Lab',
+    image: '/static/1200x630.png',
+    href: '/blog/2',
+    span: 'md:col-span-1',
+  },
 
   // ROW 2: 1 + 2 = 3 columns
-  { title: "Archive", image: "/static/1200x630.png", href: "/blog/3", span: "md:col-span-1" },
-  { title: "Future Punk", image: "/static/1200x630.png", href: "/blog/4", span: "md:col-span-2" },
+  {
+    title: 'Archive',
+    image: '/static/1200x630.png',
+    href: '/blog/3',
+    span: 'md:col-span-1',
+  },
+  {
+    title: 'Future Punk',
+    image: '/static/1200x630.png',
+    href: '/blog/4',
+    span: 'md:col-span-2',
+  },
 
   // ROW 3: 1 + 1 + 1 = 3 columns
-  { title: "Project A", image: "/static/1200x630.png", href: "/blog/5", span: "md:col-span-1" },
-  { title: "Project B", image: "/static/1200x630.png", href: "/blog/6", span: "md:col-span-1" },
-  { title: "Project C", image: "/static/1200x630.png", href: "/blog/7", span: "md:col-span-1" },
-];
-
+  {
+    title: 'Project A',
+    image: '/static/1200x630.png',
+    href: '/blog/5',
+    span: 'md:col-span-1',
+  },
+  {
+    title: 'Project B',
+    image: '/static/1200x630.png',
+    href: '/blog/6',
+    span: 'md:col-span-1',
+  },
+  {
+    title: 'Project C',
+    image: '/static/1200x630.png',
+    href: '/blog/7',
+    span: 'md:col-span-1',
+  },
+]
 ---
 
 <Layout class="max-w-3xl">
   <PageHead slot="head" title="Home" />
-  
+
   <section>
     <div class="rounded-lg border">
       <div class="flex flex-col space-y-1.5 p-6">
         <!-- Log -->
-        <h3 class="text-3xl leading-none font-medium flex items-center gap-x-1">
+        <h3 class="flex items-center gap-x-1 text-3xl leading-none font-medium">
           <span>l</span>
           <lord-icon
             src="/animations/o-logo-stack.json"
             trigger="loop"
             stroke="bold"
             state="hover-pinch"
-            class="w-[1.2em] h-[1.2em]"
-            colors="primary:#ea580c,secondary:#000000" 
+            class="h-[1.2em] w-[1.2em]"
+            colors="primary:#ea580c,secondary:#000000"
           >
           </lord-icon>
           <span>g</span>
         </h3>
-        
+
         <p class="text-muted-foreground text-sm">
           /lɒɡ/ &bull; <span class="font-medium">noun</span>
           <p class="text-muted-foreground text-sm">
@@ -91,90 +124,139 @@ const projects = [
       </div>
 
       <!-- SEPARATOR -->
-      <div class="w-full flex justify-center py-2">
-        <div class="h-[1px] w-[65%] bg-border separatorGradient"></div>
+      <div class="flex w-full justify-center py-2">
+        <div class="bg-border separatorGradient h-[1px] w-[65%]"></div>
       </div>
-      
+
       <!-- PROJECT SECTION -->
       <div class="flex flex-col space-y-1.5 p-6">
-        <h3 class="text-3xl leading-none font-medium flex items-center gap-x-1 text-gradient">
-          <span>  
+        <h3
+          class="text-gradient flex items-center gap-x-1 text-3xl leading-none font-medium"
+        >
+          <span>
             <lord-icon
               src="/animations/project-stack.json"
               trigger="loop"
               stroke="bold"
               state="hover-pinch"
-              class="w-[1.2em] h-[1.2em]"
-              colors="primary:#000000,secondary:#ea580c" 
+              class="h-[1.2em] w-[1.2em]"
+              colors="primary:#000000,secondary:#ea580c"
             >
             </lord-icon>
           </span>
-          pro•ject
+          pro&bull;ject
         </h3>
-      <p class="text-muted-foreground text-sm">
-        /ˈprɑː.dʒekt/ &bull; <span class="font-medium">noun</span>
-      </p>
-      <p class="text-muted-foreground text-sm">
-        a piece of planned work or an activity that is finished over a period of time and intended to achieve a particular purpose 
-      </p>
-      <p>
-      The{" "}
-      <Highlighter client:load action="underline" color="#FF9800">
-        Magic UI Highlighter
-      </Highlighter>{" "}
-      makes important{" "}
-      <Highlighter client:load action="highlight" color="#87CEFA">
-        text stand out
-      </Highlighter>{" "}
-      effortlessly.
-      </p>
-      
-      <div class="pt-4">
-        <HoverExpand client:load items={items} />
+        <p class="text-muted-foreground text-sm">
+          /ˈprɑː.dʒekt/ &bull; <span class="font-medium">noun</span>
+        </p>
+        <p class="text-muted-foreground text-sm">
+          a piece of planned work or an activity that is finished over a period
+          of time and intended to achieve a particular purpose
+        </p>
+        <p>
+          The{' '}
+          <Highlighter client:load action="underline" color="#FF9800">
+            Magic UI Highlighter
+          </Highlighter>{' '}
+          makes important{' '}
+          <Highlighter client:load action="highlight" color="#87CEFA">
+            text stand out
+          </Highlighter>{' '}
+          effortlessly.
+        </p>
+
+        <div class="pt-4">
+          <HoverExpand client:load items={items} />
+        </div>
       </div>
-      </div>
-      
+
       <!-- SEPARATOR -->
-      <div class="w-full flex items-center justify-center py-8">
-        <div class="h-[1px] bg-border flex-grow separatorGradient"></div>
-        
-        <span class="px-4 text-muted-foreground text-xs font-medium uppercase tracking-widest whitespace-nowrap">
+      <div class="flex w-full items-center justify-center py-8">
+        <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
+
+        <span
+          class="text-muted-foreground px-4 text-xs font-medium tracking-widest whitespace-nowrap uppercase"
+        >
           Looking for more?
         </span>
-      
-        <div class="h-[1px] bg-border flex-grow separatorGradient"></div>
+
+        <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
       </div>
-      
-      
-        <section class="max-w-6xl mx-auto p-4">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[280px]">
-            {projects.map((project) => (
-              <BentoCard {...project} />
-            ))}
-          </div>
-        </section>
-      
+
+      <section class="mx-auto max-w-6xl p-4">
+        <div class="grid auto-rows-[280px] grid-cols-1 gap-4 md:grid-cols-3">
+          {projects.map((project) => <BentoCard {...project} />)}
+        </div>
+      </section>
 
       <!-- Class Navigations -->
       <div class="flex flex-col space-y-1.5 p-6">
         <div class="flex flex-wrap items-center gap-2 md:flex-row">
-          <Link href="/tags/capstone" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> Capstone
+          <Link
+            href="/tags/capstone"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > Capstone
           </Link>
-          <Link href="/tags/machine-lab" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> Machine Lab
+          <Link
+            href="/tags/machine-lab"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > Machine Lab
           </Link>
-          <Link href="/tags/bodyarchive" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> The Body Archive
+          <Link
+            href="/tags/bodyarchive"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > The Body Archive
           </Link>
-          <Link href="/tags/digital-archive" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> Digital Archive & Art Humanities
+          <Link
+            href="/tags/digital-archive"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > Digital Archive & Art Humanities
           </Link>
-          <Link href="/tags/future-punk" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> Future Punk
+          <Link
+            href="/tags/future-punk"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > Future Punk
           </Link>
-          <Link href="/tags/understanding-im" class= {cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}>
-            <span class="transition-transform group-hover:-translate-x-1">&#9675;</span> Understanding IM
+          <Link
+            href="/tags/understanding-im"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex gap-x-1.5 group',
+            )}
+          >
+            <span class="transition-transform group-hover:-translate-x-1"
+              >&#9675;</span
+            > Understanding IM
           </Link>
         </div>
       </div>
@@ -191,4 +273,3 @@ const projects = [
     vertical-align: -0.2em; /* This moves it down slightly to match the 'l' and 'g' */
   }
 </style>
-</Layout>

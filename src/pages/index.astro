@@ -1,7 +1,6 @@
 ---
 import BentoCard from '@/components/BentoCard.astro'
 import PageHead from '@/components/PageHead.astro'
-import { Highlighter } from '@/components/ui/highlighter'
 import { HoverExpand } from '@/components/unlumen-ui/hover-expand'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
@@ -130,53 +129,39 @@ const projects = [
           of time and intended to achieve a particular purpose
         </p>
 
-        <!-- #Magic UI Text -->
-        <!-- <p>
-          The{' '}
-          <Highlighter client:load action="underline" color="#FF9800">
-            Magic UI Highlighter
-          </Highlighter>{' '}
-          makes important{' '}
-          <Highlighter client:load action="highlight" color="#87CEFA">
-            text stand out
-          </Highlighter>{' '}
-          effortlessly.
-        </p>
-
         <div class="pt-4">
           <HoverExpand client:load items={items} />
         </div>
-      </div> -->
-
-        <!-- SEPARATOR -->
-        <div class="flex w-full items-center justify-center py-8">
-          <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
-
-          <span
-            class="text-muted-foreground px-4 text-xs font-medium tracking-widest whitespace-nowrap uppercase"
-          >
-            Looking for more?
-          </span>
-
-          <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
-        </div>
-
-        <section class="mx-auto max-w-6xl p-4">
-          <div class="grid auto-rows-[280px] grid-cols-1 gap-4 md:grid-cols-3">
-            {projects.map((project) => <BentoCard {...project} />)}
-          </div>
-        </section>
-
-        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-        <style>
-          /* Custom nudge to make the cube sit perfectly on the text baseline */
-          lord-icon {
-            display: inline-block;
-            vertical-align: -0.2em; /* This moves it down slightly to match the 'l' and 'g' */
-          }
-        </style>
       </div>
+
+      <!-- SEPARATOR -->
+      <div class="flex w-full items-center justify-center py-8">
+        <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
+
+        <span
+          class="text-muted-foreground px-4 text-xs font-medium tracking-widest whitespace-nowrap uppercase"
+        >
+          Looking for more?
+        </span>
+
+        <div class="bg-border separatorGradient h-[1px] flex-grow"></div>
+      </div>
+
+      <section class="mx-auto max-w-6xl p-4">
+        <div class="grid auto-rows-[280px] grid-cols-1 gap-4 md:grid-cols-3">
+          {projects.map((project) => <BentoCard {...project} />)}
+        </div>
+      </section>
+
+      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+      <style>
+        /* Custom nudge to make the cube sit perfectly on the text baseline */
+        lord-icon {
+          display: inline-block;
+          vertical-align: -0.2em; /* This moves it down slightly to match the 'l' and 'g' */
+        }
+      </style>
     </div>
   </section>
 </Layout>

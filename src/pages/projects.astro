@@ -1,6 +1,5 @@
 ---
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Layout from '@/layouts/Layout.astro'
@@ -16,16 +15,19 @@ const projects = await getAllProjects()
   <section>
     <div class="min-w-full">
       <div class="prose mb-8">
-        <h3 class="text-3xl leading-none font-medium text-gradient">pro•ject</h3>
+        <h3 class="text-gradient text-3xl leading-none font-medium">
+          pro•ject
+        </h3>
         <p class="text-muted-foreground text-sm">
-           /ˈprɑː.dʒekt/ &bull; <span class="font-medium">noun</span>
+          /ˈprɑː.dʒekt/ &bull; <span class="font-medium">noun</span>
         </p>
         <p class="mt-0">
-          a piece of planned work or an activity that is finished over a period of time and intended to achieve a particular purpose 
+          a piece of planned work or an activity that is finished over a period
+          of time and intended to achieve a particular purpose
         </p>
       </div>
 
-      <h2 class="mb-4 text-2xl font-medium">My Projects [Personal | Team]</h2>
+      <h2 class="mb-4 text-2xl font-medium">[Personal & Team]</h2>
       <div class="flex flex-col gap-4">
         {projects.map((project) => <ProjectCard project={project} />)}
       </div>

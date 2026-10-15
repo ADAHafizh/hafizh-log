@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+---
+
+<Layout title={project.data.name}>
+  <article class="prose dark:prose-invert mx-auto py-10">
+    <h1>{project.data.name}</h1>
+    <p>{project.data.description}</p>
+    <Content />
+  </article>
+</Layout>

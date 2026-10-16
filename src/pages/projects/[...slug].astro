@@ -1,4 +1,6 @@
 ---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getCollection, render } from 'astro:content'
 
@@ -14,8 +16,20 @@ const { project } = Astro.props
 const { Content } = await render(project)
 ---
 
-<Layout title={project.data.name}>
-  <article class="prose dark:prose-invert mx-auto py-10">
+<Layout class="max-w-3xl">
+  <PageHead
+    slot="head"
+    title={project.data.name}
+    description={project.data.description}
+  />
+  <Breadcrumbs
+    items={[
+      { href: '/projects', label: 'Projects', icon: 'lucide:layers' },
+      { label: project.data.name, icon: 'lucide:file-text' },
+    ]}
+  />
+
+  <article class="prose dark:prose-invert mx-auto w-full py-6">
     <h1>{project.data.name}</h1>
     <p>{project.data.description}</p>
     <Content />

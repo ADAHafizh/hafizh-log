@@ -3,7 +3,7 @@ title: 'Senspace & Beyond'
 description: 'Episodic continuation of our installation progress'
 date: 2026-05-18
 tags: ['capstone']
-image: './bg-capstone.png'
+image: './bg-senspace-beyond.png'
 authors: ['adahafizh']
 ---
 
@@ -13,6 +13,16 @@ authors: ['adahafizh']
 
 # Project Revamps
 
+Following our discussion that the visuals needs to have more narrative, I began with the simple ones and asked myself: **how does two different behavior tell a story?**
+
+This leads me to think the beginning of Senspace experience (Idle State) by attracting users from far away & remember that it’s supposed to feel like a living environment. In a general umbrella, it is the prologue for next visuals & transitions.
+
+<div style={{ textAlign: 'center' }}>
+
+**Subtleness is key, we want audience to realize difference but not feel too unsettling**
+
+</div>
+
 ## Implementing GLSL Foundation for Senspace Visuals
 *GLSL (OpenGL Shading Language)* is a high-level, C-based programming language used to write custom shader programs that run directly on a computer's graphics processing unit (GPU). The core concept of GLSL are:
 
@@ -21,3 +31,44 @@ authors: ['adahafizh']
 - **No Recursion:** Function recursion and goto statements are strictly forbidden to ensure predictable GPU execution time
 
 As we are aiming to install multiple projectors for the physical installation, using this programming language allows us to bypass the stacking layers and filters of TouchDesigner and ensure lighter performance for the machine.
+
+## Why Shaders?
+
+Previous version of the project duplicates the base Voronoi cell visuals into each state. 
+
+- *This causes several issues:*
+- **Performance** is very expensive and requires re-rendering frames, wasting resources
+- **Disjointed and noticeable difference** when transitioning into each visuals, meaning the behavior of the cells are different each time the `Controller` snaps to another state
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://imgur.com/LkpIEFa" alt="WS Test" style="width: 100%;"/>
+        <figcaption> Voronoi Duplication </figcaption>
+    </figure>
+</div>
+
+> Thus what I implemented is a singular Voronoi cell that is distributed into different visual states, **saving cook times & reducing VRAM and GPU Overhead massively**
+
+# Behavior Variance 
+
+With the various data that are being transmitted by the sensor, I wanted to have a variation in how the visuals looked. Thus, I implemented a simple switch system to allow multiple visual parameters. Using `logic CHOP` , it is controlled in a 60 second timer, that is split 50/50 meaning every 30s it switches back-and-forth.
+
+> This will allow me to have different *behaviors* for the visuals
+
+## Behavior I: Heartbeat
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/WqUcuuW.mp4" alt="WS Test" style="width: 100%;"/>
+        <figcaption> Heartbeat-like motion from randomized data </figcaption>
+    </figure>
+</div>
+
+## Behavior II: Jittery Cells
+
+<div style="display: flex; justify-content: center; gap: 5px;">
+    <figure style="text-align: center;">
+        <img src="https://i.imgur.com/1Bf6jNv.mp4" alt="WS Test" style="width: 100%;"/>
+        <figcaption> Randomized data translated to jitters </figcaption>
+    </figure>
+</div>
